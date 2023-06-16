@@ -6,10 +6,10 @@ import { Header } from './header';
 export default function Layout({ children }: React.PropsWithChildren<{}>) {
   return (
     <div
-      className={clsx('flex min-h-screen flex-col bg-cos-gradient dark:bg-cos-gradient-dark dark:text-white', poppins.variable)}
+      className={clsx('flex min-h-screen flex-col bg-tb-gradient dark:bg-tb-gradient-dark dark:text-white', poppins.variable)}
     >
       <Header />
-      <main className="relative h-full w-full flex-grow">{children}</main>
+      <main className="relative flex-grow">{children}</main>
       <Footer />
     </div>
   );
