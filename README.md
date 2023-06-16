@@ -1,38 +1,61 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# TabbyNav
 
-## Getting Started
+[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/username/repo/blob/master/LICENSE) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/username/repo/pulls)
 
-First, run the development server:
+🐱 TabbyNav是一个基于 Next.js + Typescript + React + Tailwind 开发的导航网站，旨在帮助用户方便地管理和组织自己的导航链接。
+
+## 🚀 功能
+
+✏️ 添加、编辑、删除自己的导航链接
+
+🔍 通过搜索框查找自己添加的导航链接
+
+📁 按照分类组织自己的导航链接
+
+🚀 支持多种常用网站的快速访问及一键重置
+
+## 🛠 技术栈
+
+🔧 `Next.js `   `Typescript`   `React`   `Tailwind`
+
+## 📦 安装
+
+1. 克隆项目到本地
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
+git clone https://github.com/yusixian/tabby-nav
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. 安装依赖
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+```bash
+cd tabby-nav
+yarn
+```
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+3. 启动项目
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+```bash
+yarn dev
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## 🤝 贡献
 
-## Learn More
+欢迎大家贡献代码，一起让TabbyNav变得更好！
 
-To learn more about Next.js, take a look at the following resources:
+## 📝 许可证
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+TabbyNav 使用 [MIT许可证](./LICENSE)。
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## 📧 联系我
 
-## Deploy on Vercel
+如果你有任何问题或建议，请通过以下方式联系我们：
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- 在我们的 [GitHub Issue](https://github.com/yusixian/tabby-nav/issues) 上提出问题或建议
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## 🙏 鸣谢
+
+感谢以下项目对 TabbyNav 的开发提供的灵感及参考：
+
+- [✨ 森语导航](https://github.com/sadose/forest-navigation) - 大森哥的导航网站
+- ...
