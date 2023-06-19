@@ -14,7 +14,7 @@ module.exports = {
         '2xl': '1366px',
       },
       colors: {
-        'tb-primary': '#1EDB8C',
+        'tb-primary': '#e91e63',
       },
       backgroundImage: {
         'tb-gradient': 'linear-gradient( 135deg, #ee9ca7 10%, #ffdde1 100%)',
