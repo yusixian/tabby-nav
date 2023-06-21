@@ -17,8 +17,6 @@ const routers: {
   path: string;
 }[] = [
   { name: '首页', path: '/' },
-  { name: '推荐', path: '/recommend' },
-  { name: '我的', path: '/my' },
   { name: '关于', path: '/about' },
 ];
 const itemVariants = {
@@ -61,7 +59,7 @@ export const Navigator = ({ className }: NavigatorProps) => {
       {
         key: 'Github',
         icon: <AiFillGithub className="h-9 w-9 cursor-pointer" />,
-        onClick: () => window?.open('https://github.com/yusixian/cosine-music', '_blank'),
+        onClick: () => window?.open('https://github.com/yusixian/tabby-nav', '_blank'),
       },
       {
         key: 'CgDarkMode',
