@@ -13,6 +13,7 @@ export default function Home() {
       <Carousel3d
         items={items}
         className="select-none"
+        itemClass="-ml-6"
         renderIndicators={({ preEvent, nextEvent }) => (
           <div className="flex w-full items-center justify-between">
             <div className="flex items-center gap-2 text-2xl">
