@@ -12,7 +12,7 @@ export default function Home() {
     <div className="mx-auto flex max-w-screen-lg flex-col gap-3 p-4">
       <Carousel3d
         items={items}
-        className="select-none"
+        className="ml-6 select-none"
         itemClass="-ml-6"
         renderIndicators={({ preEvent, nextEvent }) => (
           <div className="flex w-full items-center justify-between">
