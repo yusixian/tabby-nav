@@ -2,7 +2,7 @@
 
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/username/repo/blob/master/LICENSE) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/username/repo/pulls)
 
-🐱 TabbyNav是一个基于 Next.js + Typescript + React + Tailwind 开发的导航网站，旨在帮助用户方便地管理和组织自己的导航链接。
+🐱 TabbyNav 是一个基于 Next.js + Typescript + React + Tailwind 开发的导航网站，旨在帮助用户方便地管理和组织自己的导航链接。
 
 ## 🚀 功能
 
@@ -16,7 +16,7 @@
 
 ## 🛠 技术栈
 
-🔧 `Next.js `   `Typescript`   `React`   `Tailwind`
+🔧 `Next.js ` `Typescript` `React` `Tailwind`
 
 ## 📦 安装
 
@@ -41,11 +41,11 @@ yarn dev
 
 ## 🤝 贡献
 
-欢迎大家贡献代码，一起让TabbyNav变得更好！
+欢迎大家贡献代码，一起让 TabbyNav 变得更好！
 
 ## 📝 许可证
 
-TabbyNav 使用 [MIT许可证](./LICENSE)。
+TabbyNav 使用 [MIT 许可证](./LICENSE)。
 
 ## 📧 联系我
 
@@ -57,5 +57,6 @@ TabbyNav 使用 [MIT许可证](./LICENSE)。
 
 感谢以下项目对 TabbyNav 的开发提供的灵感及参考：
 
+- [All | NavNav+](https://navnav.co/)
 - [✨ 森语导航](https://github.com/sadose/forest-navigation) - 大森哥的导航网站
 - ...

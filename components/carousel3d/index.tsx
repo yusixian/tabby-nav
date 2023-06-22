@@ -1,5 +1,5 @@
 import { AnimatePresence, motion } from 'framer-motion';
-import { useEffect, useRef, useState } from 'react';
+import { ReactNode, useEffect, useRef, useState } from 'react';
 import { AiFillLeftCircle, AiFillRightCircle } from 'react-icons/ai';
 import { twMerge } from 'tailwind-merge';
 
@@ -39,8 +39,18 @@ type Carousel3dProps = {
   interval?: number;
   autoplay?: boolean;
   itemClass?: string;
+  renderIndicators?: ({ preEvent, nextEvent }: { preEvent: () => void; nextEvent: () => void }) => ReactNode;
+  indicatorClass?: string;
 };
-export default function Carousel3d({ className, items, interval = 3000, autoplay = true, itemClass }: Carousel3dProps) {
+export default function Carousel3d({
+  className,
+  items,
+  interval = 3000,
+  autoplay = true,
+  itemClass,
+  renderIndicators,
+  indicatorClass,
+}: Carousel3dProps) {
   const [[activeIndex, direction], setActiveIndex] = useState([0, 0]);
   // we want the scope to be always to be in the scope of the array so that the carousel is endless
   const indexInArrayScope = ((activeIndex % items.length) + items.length) % items.length;
@@ -72,10 +82,7 @@ export default function Carousel3d({ className, items, interval = 3000, autoplay
   }, [autoplay, interval, setTimer]);
   return (
     <div className="flex w-full flex-col items-center justify-center gap-2">
-      <div className="flex justify-center gap-2 text-5xl">
-        <AiFillLeftCircle onClick={() => handleClick(-1)} className=" h-20 w-20 cursor-pointer hover:opacity-70" />
-        <AiFillRightCircle onClick={() => handleClick(1)} className=" h-20 w-20 cursor-pointer hover:opacity-70" />
-      </div>
+      {renderIndicators?.({ preEvent: () => handleClick(-1), nextEvent: () => handleClick(1) })}
       <div className={twMerge('grid grid-cols-[1fr_1fr_1fr] place-items-center', className)}>
         <AnimatePresence mode="popLayout" initial={false}>
           {visibleItems.map(({ src, imgClass }) => {
@@ -83,7 +90,7 @@ export default function Carousel3d({ className, items, interval = 3000, autoplay
             // The key tells framer-motion that the elements changed its position
             return (
               <motion.div
-                className={twMerge('-ml-8 w-auto', itemClass)}
+                className={twMerge('w-auto', itemClass)}
                 key={src}
                 layout
                 custom={{
@@ -104,7 +111,7 @@ export default function Carousel3d({ className, items, interval = 3000, autoplay
                 exit="exit"
                 transition={{ duration: 0.8 }}
               >
-                <img src={src} loading="lazy" alt={src} className={twMerge('h-auto w-full', imgClass)} />
+                <img src={src} loading="lazy" alt={src} className={twMerge('h-full w-full', imgClass)} />
               </motion.div>
             );
           })}

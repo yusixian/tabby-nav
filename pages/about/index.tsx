@@ -17,18 +17,19 @@ export default function About() {
               https://github.com/yusixian/tabby-nav
             </Link>
           </p>
-          <List className="w-full text-lg">
-            <ListItem>
-              <ListItemButton onClick={() => window.open('https://github.com/yusixian/tabby-nav', '_blank')}>
-                <ListItemIcon>
-                  <FaGithub className="h-10 w-10" />
-                </ListItemIcon>
-                <ListItemText primary="tabby-nav" className="text-lg" />
-                <FaStar className="mr-2 h-6 w-6 fill-yellow-400" />
-                Star
-              </ListItemButton>
-            </ListItem>
-          </List>
+          <div
+            className="mx-4 flex cursor-pointer items-center justify-between rounded-xl py-2 px-4 transition hover:bg-black/10 dark:hover:bg-black/30"
+            onClick={() => window.open('https://github.com/yusixian/tabby-nav', '_blank')}
+          >
+            <div className="flex items-center gap-2 text-xl">
+              <FaGithub className="h-10 w-10" />
+              Tabby Nav
+            </div>
+            <div>
+              <FaStar className="mr-2 h-6 w-6 fill-yellow-500" />
+              Star
+            </div>
+          </div>
         </div>
       </Card>
     </main>

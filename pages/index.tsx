@@ -1,17 +1,20 @@
 import Carousel3d from '@/components/carousel3d';
-import Head from 'next/head';
+import { AiFillLeftCircle, AiFillRightCircle } from 'react-icons/ai';
 
-const items = [
-  { src: 'https://api.ayaka.icu/img/url.io?bili=3&seed=1', imgClass: 'rounded-xl' },
-  { src: 'https://api.ayaka.icu/img/url.io?bili=3&seed=2', imgClass: 'rounded-xl' },
-  { src: 'https://api.ayaka.icu/img/url.io?bili=3&seed=3', imgClass: 'rounded-xl' },
-  { src: 'https://api.ayaka.icu/img/url.io?bili=3&seed=4', imgClass: 'rounded-xl' },
-  { src: 'https://api.ayaka.icu/img/url.io?bili=3&seed=5', imgClass: 'rounded-xl' },
-];
+const items = [{ src: '/img/home/img_1.png' }, { src: '/img/home/img_2.png' }, { src: '/img/home/img_3.png' }];
 export default function Home() {
   return (
     <div className="overflow-auto">
-      <Carousel3d items={items} className="w-full rounded-xl" />
+      <Carousel3d
+        items={items}
+        className="select-none"
+        renderIndicators={({ preEvent, nextEvent }) => (
+          <div className="flex justify-center gap-2 text-5xl">
+            <AiFillLeftCircle onClick={preEvent} className="h-20 w-20 cursor-pointer hover:opacity-70" />
+            <AiFillRightCircle onClick={nextEvent} className="h-20 w-20 cursor-pointer hover:opacity-70" />
+          </div>
+        )}
+      />
     </div>
   );
 }
