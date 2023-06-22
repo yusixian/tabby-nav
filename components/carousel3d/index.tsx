@@ -1,3 +1,4 @@
+import clsx from 'clsx';
 import { AnimatePresence, motion } from 'framer-motion';
 import { ReactNode, useEffect, useRef, useState } from 'react';
 import { AiFillLeftCircle, AiFillRightCircle } from 'react-icons/ai';
@@ -31,6 +32,8 @@ function getZIndex({ position, direction }: any) {
 type Carousel3dItemProps = {
   src: string;
   imgClass?: string;
+  href?: string;
+  desc?: string;
 };
 
 type Carousel3dProps = {
@@ -40,7 +43,6 @@ type Carousel3dProps = {
   autoplay?: boolean;
   itemClass?: string;
   renderIndicators?: ({ preEvent, nextEvent }: { preEvent: () => void; nextEvent: () => void }) => ReactNode;
-  indicatorClass?: string;
 };
 export default function Carousel3d({
   className,
@@ -49,7 +51,6 @@ export default function Carousel3d({
   autoplay = true,
   itemClass,
   renderIndicators,
-  indicatorClass,
 }: Carousel3dProps) {
   const [[activeIndex, direction], setActiveIndex] = useState([0, 0]);
   // we want the scope to be always to be in the scope of the array so that the carousel is endless
@@ -85,12 +86,15 @@ export default function Carousel3d({
       {renderIndicators?.({ preEvent: () => handleClick(-1), nextEvent: () => handleClick(1) })}
       <div className={twMerge('grid grid-cols-[1fr_1fr_1fr] place-items-center', className)}>
         <AnimatePresence mode="popLayout" initial={false}>
-          {visibleItems.map(({ src, imgClass }) => {
+          {visibleItems.map(({ src, imgClass, href, desc }) => {
             // The layout prop makes the elements change its position as soon as a new one is added
             // The key tells framer-motion that the elements changed its position
             return (
               <motion.div
-                className={twMerge('w-auto', itemClass)}
+                onClick={() => {
+                  href && window.open(href, '_blank');
+                }}
+                className={twMerge(clsx('group relative w-auto overflow-hidden', { 'cursor-pointer': !!href }), itemClass)}
                 key={src}
                 layout
                 custom={{
@@ -111,7 +115,17 @@ export default function Carousel3d({
                 exit="exit"
                 transition={{ duration: 0.8 }}
               >
-                <img src={src} loading="lazy" alt={src} className={twMerge('h-full w-full', imgClass)} />
+                {desc && (
+                  <div className="absolute inset-0 z-10 flex scale-0 items-center justify-center bg-black/40 p-4 text-center text-xl opacity-0 transition duration-75 group-hover:scale-100 group-hover:opacity-100">
+                    {desc}
+                  </div>
+                )}
+                <img
+                  src={src}
+                  loading="lazy"
+                  alt={src}
+                  className={twMerge('h-full w-full transition group-hover:scale-125', imgClass)}
+                />
               </motion.div>
             );
           })}
