@@ -130,7 +130,7 @@ export const Navigator = ({ className }: NavigatorProps) => {
             onClose={() => setMobileExpand(false)}
           >
             <motion.div variants={itemVariants}>
-              <List>
+              <List className="min-w-[10rem]">
                 {routers.map(({ name, path, key }, idx) => (
                   <ListItem key={key ?? name} disablePadding>
                     <ListItemButton>
@@ -165,16 +165,11 @@ export const Navigator = ({ className }: NavigatorProps) => {
           </Drawer>
         </>
       ) : (
-        <motion.div
-          initial="closed"
-          animate="open"
-          variants={itemVariants}
-          className="ml-4 flex h-full w-full flex-grow items-center gap-4"
-        >
+        <motion.div initial="closed" animate="open" variants={itemVariants} className="ml-4 flex h-full w-full flex-grow gap-4">
           {routers.map(({ name, path, key }, idx) => (
             <NavItem
               selected={selectIdx === idx}
-              indicatorClass="-bottom-2"
+              indicatorClass="bottom-0.5"
               className="px-2"
               key={key ?? name}
               onClick={() => {

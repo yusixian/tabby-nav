@@ -1,4 +1,6 @@
 import Carousel3d from '@/components/carousel3d';
+import { shakingAnim } from '@/constants/animate';
+import { motion } from 'framer-motion';
 import { AiFillLeftCircle, AiFillRightCircle } from 'react-icons/ai';
 import { FcLike } from 'react-icons/fc';
 
@@ -20,8 +22,24 @@ export default function Home() {
               <FcLike className="h-10 w-10" /> 我的收藏
             </div>
             <div className="flex items-center justify-center gap-2 text-3xl">
-              <AiFillLeftCircle onClick={preEvent} className="h-12 w-12 cursor-pointer hover:opacity-70" />
-              <AiFillRightCircle onClick={nextEvent} className="h-12 w-12 cursor-pointer hover:opacity-70" />
+              <motion.div
+                initial={{ rotate: 0 }}
+                whileTap={{ scale: 1.2 }}
+                className="cursor-pointer"
+                whileHover={shakingAnim()}
+                onClick={preEvent}
+              >
+                <AiFillLeftCircle className="h-12 w-12" />
+              </motion.div>
+              <motion.div
+                initial={{ rotate: 0 }}
+                whileTap={{ scale: 1.2 }}
+                className="cursor-pointer"
+                whileHover={shakingAnim()}
+                onClick={nextEvent}
+              >
+                <AiFillRightCircle className="h-12 w-12" />
+              </motion.div>
             </div>
           </div>
         )}

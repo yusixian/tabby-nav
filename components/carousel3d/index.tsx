@@ -116,7 +116,7 @@ export default function Carousel3d({
                 transition={{ duration: 0.8 }}
               >
                 {desc && (
-                  <div className="absolute inset-0 z-10 flex scale-0 items-center justify-center bg-black/40 p-4 text-center text-xl opacity-0 transition duration-75 group-hover:scale-100 group-hover:opacity-100">
+                  <div className="absolute inset-x-0 bottom-0 z-10 flex scale-0 items-center justify-center bg-black/30 p-4 text-center text-xl text-white opacity-0 backdrop-blur transition duration-75 group-hover:scale-100 group-hover:opacity-100">
                     {desc}
                   </div>
                 )}

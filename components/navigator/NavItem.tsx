@@ -23,7 +23,7 @@ function NavItem({ selected, icon, name, onClick, className, indicatorClass }: N
     <motion.div
       variants={itemVariants}
       className={clsx(
-        'relative flex cursor-pointer justify-center text-xl hover:opacity-70',
+        'relative flex cursor-pointer items-center justify-center text-xl',
         {
           'text-primary': selected,
         },

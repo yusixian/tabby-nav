@@ -57,6 +57,16 @@ TabbyNav 使用 [MIT 许可证](./LICENSE)。
 
 感谢以下项目对 TabbyNav 的开发提供的灵感及参考：
 
+- [helloxz/onenav](https://github.com/helloxz/onenav)
+- [toolsdar.com](https://toolsdar.com/)
 - [All | NavNav+](https://navnav.co/)
 - [✨ 森语导航](https://github.com/sadose/forest-navigation) - 大森哥的导航网站
 - ...
+
+## TODO
+
+- [ ] 主要导航结构
+- [ ] 数据源
+- [ ] 后台
+- [ ] 导入书签
+- [ ] google analyze 埋点统计访问次数等

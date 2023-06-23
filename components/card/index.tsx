@@ -25,7 +25,7 @@ const Card = ({ title, desc, children, onClick, href, className, clickable = fal
     <div
       onClick={_onClick}
       className={clsx(
-        'flex flex-col gap-3 rounded-xl border-2 border-black/10 bg-white p-4 shadow-md dark:border-white/10 dark:bg-[#1e1e1e]',
+        'flex flex-col gap-3 rounded-xl border border-bg-200 bg-white bg-bg-100 p-4 shadow-md',
         { 'cursor-pointer transition-all duration-300 hover:-translate-y-2': _clickable },
         className,
       )}

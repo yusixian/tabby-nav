@@ -1,5 +1,5 @@
 {
-  "name": "next-ts-tailwind-template",
+  "name": "tabby-nav",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -24,6 +24,7 @@
     "react-icons": "^4.9.0",
     "react-responsive": "^9.0.2",
     "react-use": "^17.4.0",
+    "recoil": "^0.7.7",
     "tailwind-merge": "^1.13.2",
     "typescript": "5.0.2"
   },

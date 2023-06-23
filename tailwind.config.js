@@ -13,13 +13,27 @@ module.exports = {
         xl: '1366px',
         '2xl': '1366px',
       },
+      text: {},
       colors: {
-        primary: '#e91e63',
+        primary: 'var(--primary)',
+        accent: {
+          default: 'var(--accent-100)',
+          200: 'var(--accent-200)',
+        },
+        header: 'var(--bg-header)',
+        text: {
+          100: 'var(--text-100)',
+          200: 'var(--text-200)',
+        },
+        bg: {
+          100: 'var(--bg-100)',
+          200: 'var(--bg-200)',
+          300: 'var(--bg-300)',
+        },
       },
       backgroundImage: {
-        gradient: 'linear-gradient( 135deg, #fdfbfb 10%, #ebedee 100%)',
-        'gradient-dark': 'linear-gradient(160deg, rgba(28,28,28,1) 0%, rgba(55,60,56,1) 100%)',
-        'gradient-pink': 'linear-gradient(279deg, rgba(249,102,118,1) 0%, rgba(233,30,99,1) 100%)',
+        gradient: 'var(--gradient-bg)',
+        'gradient-pink': 'var(--gradient-pink)',
       },
       fontFamily: {
         poppins: 'var(--font-poppins)',
