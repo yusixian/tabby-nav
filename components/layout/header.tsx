@@ -7,7 +7,7 @@ export function Header() {
   const router = useRouter();
 
   return (
-    <header className="flex select-none items-center justify-between gap-4 bg-header px-4 pt-2 pb-3">
+    <header className="flex select-none items-center justify-between gap-4 overflow-visible bg-header px-4 pt-2 pb-3">
       <motion.div
         initial={{ rotate: -180, scale: 0 }}
         animate={{ scale: 1, rotate: 0 }}

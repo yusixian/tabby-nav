@@ -10,7 +10,7 @@ const itemVariants: Variants = {
   closed: { opacity: 0, y: 20, transition: { duration: 0.3 } },
 };
 
-type NavItemProps = {
+export type NavItemProps = {
   selected?: boolean;
   name?: string;
   icon?: JSX.Element;

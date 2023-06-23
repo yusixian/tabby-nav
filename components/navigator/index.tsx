@@ -10,6 +10,9 @@ import { AiFillGithub } from 'react-icons/ai';
 import { CgClose, CgDarkMode, CgMenu } from 'react-icons/cg';
 import { useMediaQuery } from 'react-responsive';
 import NavItem from './NavItem';
+import { useRecoilState } from 'recoil';
+import { oneLevelMenuExpandAtom, oneLevelTabSelectIdxAtom } from '@/store/router/state';
+import Sider from '../layout/sider';
 
 const routers: {
   name?: string;
@@ -44,14 +47,9 @@ type NavigatorProps = {
 export const Navigator = ({ className }: NavigatorProps) => {
   const router = useRouter();
 
-  const [selectIdx, setSelectIdx] = useState(() => {
-    const path = router.pathname || '/';
-    const idx = routers.findIndex((r) => r.path === path);
-    // toast.info(idx);
-    return idx;
-  });
+  const [selectIdx, setSelectIdx] = useRecoilState(oneLevelTabSelectIdxAtom);
   const toggleTheme = useToggleTheme();
-  const [mobileExpand, setMobileExpand] = useState(false);
+  const [mobileExpand, setMobileExpand] = useRecoilState(oneLevelMenuExpandAtom);
   const isMdScreen = useMediaQuery({ query: MD_SCREEN_QUERY });
   const isMounted = useIsMounted();
   const buttons = useMemo(
@@ -78,7 +76,6 @@ export const Navigator = ({ className }: NavigatorProps) => {
         break;
       }
     }
-    // router.pathname === '/' ? setSelectIdx(0) : setSelectIdx(1)
   }, [router.pathname, setSelectIdx]);
 
   if (!isMounted) return null;
@@ -123,46 +120,7 @@ export const Navigator = ({ className }: NavigatorProps) => {
               </motion.span>
             </motion.div>
           </motion.nav>
-          <Drawer
-            anchor="left"
-            open={mobileExpand}
-            onKeyDown={() => setMobileExpand(false)}
-            onClose={() => setMobileExpand(false)}
-          >
-            <motion.div variants={itemVariants}>
-              <List className="min-w-[10rem]">
-                {routers.map(({ name, path, key }, idx) => (
-                  <ListItem key={key ?? name} disablePadding>
-                    <ListItemButton>
-                      <NavItem
-                        selected={selectIdx === idx}
-                        className="w-full px-1 py-1"
-                        onClick={() => {
-                          router.push(path);
-                          setSelectIdx(idx);
-                          setMobileExpand(false);
-                        }}
-                        name={name}
-                        indicatorClass="inset-x-4"
-                      />
-                    </ListItemButton>
-                  </ListItem>
-                ))}
-                {buttons.map(({ key, icon, onClick }, idx) => (
-                  <ListItem key={key} disablePadding>
-                    <ListItemButton>
-                      <NavItem
-                        selected={selectIdx === routers.length + idx + 1}
-                        className="w-full px-1 py-1"
-                        onClick={onClick}
-                        icon={icon}
-                      />
-                    </ListItemButton>
-                  </ListItem>
-                ))}
-              </List>
-            </motion.div>
-          </Drawer>
+          <Sider bottomItems={buttons} />
         </>
       ) : (
         <motion.div initial="closed" animate="open" variants={itemVariants} className="ml-4 flex h-full w-full flex-grow gap-4">
