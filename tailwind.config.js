@@ -29,6 +29,7 @@ module.exports = {
           100: 'var(--bg-100)',
           200: 'var(--bg-200)',
           300: 'var(--bg-300)',
+          900: 'var(--bg-900)',
         },
       },
       backgroundImage: {

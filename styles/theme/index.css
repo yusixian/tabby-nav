@@ -5,9 +5,10 @@
   --text-100: #333333;
   --text-200: #5c5c5c;
   --bg-header: #f0f1f1;
-  --bg-100: #ffffff;
+  --bg-100: #fff;
   --bg-200: #f5f5f5;
   --bg-300: #cccccc;
+  --bg-900: #000;
   --gradient-bg: linear-gradient(135deg, #fdfbfb 10%, #ebedee 100%);
   --gradient-pink: linear-gradient(279deg, rgba(249, 102, 118, 1) 0%, rgba(233, 30, 99, 1) 100%);
 }
@@ -18,9 +19,10 @@ html.dark {
   --text-100: #ffffff;
   --text-200: #e0e0e0;
   --bg-header: #353535;
-  --bg-100: #1c1c1c;
+  --bg-100: #000;
   --bg-200: #2b2b2b;
   --bg-300: #434343;
+  --bg-900: #fff;
   --gradient-bg: linear-gradient(160deg, rgba(28, 28, 28, 1) 0%, rgba(55, 60, 56, 1) 100%);
   --gradient-pink: linear-gradient(279deg, #ff4081 0%, #e91e63 100%);
 }
