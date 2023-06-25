@@ -32,7 +32,7 @@ export function HomeList({ navItems, title }: HomeListProps) {
         {navItems.map(({ name, desc, icon, href }) => (
           <Card
             title={
-              <div className="flex items-center gap-2">
+              <div className="flex items-center justify-center gap-2">
                 <img src={icon ?? `${href}/favicon.ico`} alt={name} className="aspect-square w-8 rounded-full bg-white" />
                 {name}
               </div>
@@ -41,7 +41,9 @@ export function HomeList({ navItems, title }: HomeListProps) {
             clickable
             onClick={() => window.open(href, '_blank')}
           >
-            <p className="line-clamp-3 text-sm text-text-200"> {desc}</p>
+            <p className="flex justify-center text-center text-sm text-text-200">
+              <span className="line-clamp-3 text-left">{desc}</span>
+            </p>
           </Card>
         ))}
       </div>
