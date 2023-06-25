@@ -5,6 +5,7 @@ import type { AppProps } from 'next/app';
 import { ReactElement, ReactNode } from 'react';
 import '../styles/globals.css';
 import { RecoilRoot } from 'recoil';
+import { StyledEngineProvider } from '@mui/material';
 
 type NextPageWithLayout = NextPage & {
   getLayout?: (page: ReactElement) => ReactNode;
@@ -17,9 +18,11 @@ function App({ Component, pageProps }: AppPropsWithLayout) {
   const getLayout = Component.getLayout ?? ((page) => <Layout>{page}</Layout>);
 
   return (
-    <ThemeProvider attribute="class">
-      <RecoilRoot>{getLayout(<Component {...pageProps} />)}</RecoilRoot>
-    </ThemeProvider>
+    <StyledEngineProvider injectFirst>
+      <ThemeProvider attribute="class">
+        <RecoilRoot>{getLayout(<Component {...pageProps} />)}</RecoilRoot>
+      </ThemeProvider>
+    </StyledEngineProvider>
   );
 }
 

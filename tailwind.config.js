@@ -1,6 +1,9 @@
 module.exports = {
   darkMode: 'class', // https://tailwindcss.com/docs/dark-mode
   content: ['./pages/**/*.{js,ts,jsx,tsx}', './components/**/*.{js,ts,jsx,tsx}'],
+  corePlugins: {
+    preflight: false,
+  },
   theme: {
     extend: {
       container: {

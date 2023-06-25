@@ -1,5 +1,6 @@
 import Card from '@/components/card';
 import Carousel3d from '@/components/carousel3d';
+import { HomeList } from '@/components/home/HomeList';
 import Segmented from '@/components/segmented';
 import { shakingAnim } from '@/constants/animate';
 import { motion } from 'framer-motion';
@@ -31,8 +32,6 @@ const navItems = [
   },
 ];
 export default function Home() {
-  const [_, setType] = useState<'most' | 'recent'>('most');
-
   return (
     <div className="mx-auto flex max-w-screen-lg flex-col gap-6 p-4">
       <Carousel3d
@@ -67,66 +66,24 @@ export default function Home() {
           </div>
         )}
       />
-      <div className="flex flex-col gap-3">
-        <div className="flex items-center gap-2 text-xl font-bold">
-          <FcSupport className="h-7 w-7" />
-          工具
-        </div>
-        <Segmented
-          className="p-2"
-          onChange={(value) => setType(value as 'most' | 'recent')}
-          options={[
-            { label: '最常使用', value: 'most' },
-            { label: '最近使用', value: 'recent' },
-          ]}
-        />
-        <div className="grid grid-cols-4 gap-2 md:grid-cols-2">
-          {navItems.map(({ name, desc, icon, href }) => (
-            <Card
-              title={
-                <div className="flex items-center justify-center gap-2">
-                  <img src={icon ?? `${href}/favicon.ico`} alt={name} className="aspect-square w-8 rounded-full bg-white" />
-                  {name}
-                </div>
-              }
-              desc={desc}
-              key={name}
-              clickable
-              onClick={() => window.open(href, '_blank')}
-            ></Card>
-          ))}
-        </div>
-      </div>
-      <div className="flex flex-col gap-3">
-        <div className="flex items-center gap-2 text-xl font-bold">
-          <FcDocument className="h-7 w-7 " />
-          文档
-        </div>
-        <Segmented
-          className="p-2"
-          onChange={(value) => setType(value as 'most' | 'recent')}
-          options={[
-            { label: '最常使用', value: 'most' },
-            { label: '最近使用', value: 'recent' },
-          ]}
-        />
-        <div className="grid grid-cols-4 gap-2 md:grid-cols-2">
-          {navItems.map(({ name, desc, icon, href }) => (
-            <Card
-              title={
-                <div className="flex items-center justify-center gap-2">
-                  <img src={icon ?? `${href}/favicon.ico`} alt={name} className="aspect-square w-8 rounded-full bg-white" />
-                  {name}
-                </div>
-              }
-              desc={desc}
-              key={name}
-              clickable
-              onClick={() => window.open(href, '_blank')}
-            ></Card>
-          ))}
-        </div>
-      </div>
+      <HomeList
+        navItems={navItems}
+        title={
+          <>
+            <FcSupport className="h-7 w-7" />
+            工具
+          </>
+        }
+      />
+      <HomeList
+        navItems={navItems}
+        title={
+          <>
+            <FcDocument className="h-7 w-7 " />
+            文档
+          </>
+        }
+      />
     </div>
   );
 }
