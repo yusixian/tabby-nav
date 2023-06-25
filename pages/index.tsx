@@ -6,6 +6,7 @@ import { shakingAnim } from '@/constants/animate';
 import { motion } from 'framer-motion';
 import { useState } from 'react';
 import { AiFillLeftCircle, AiFillRightCircle } from 'react-icons/ai';
+import { FaMicroblog } from 'react-icons/fa';
 import { FcDocument, FcLike, FcSupport } from 'react-icons/fc';
 
 const items = [
@@ -13,7 +14,7 @@ const items = [
   { src: '/img/home/img_2.png', href: 'https://github.com/yusixian/tabby-nav', desc: 'Github地址' },
   { src: '/img/home/img_3.png', href: 'https://github.com/yusixian/tabby-nav', desc: 'Github地址' },
 ];
-const navItems = [
+const navItems1 = [
   {
     name: 'Github',
     href: 'https://github.com/',
@@ -29,6 +30,36 @@ const navItems = [
     name: '木及简历',
     href: 'https://www.mujicv.com/',
     desc: '以最简单的方式来写好简历，只需专注内容本身而无需关注排版',
+  },
+];
+const navItems2 = [
+  {
+    name: 'W3C',
+    href: 'https://www.w3.org/',
+    desc: 'The World Wide Web Consortium (W3C) develops standards and guidelines to help everyone build a web based on the principles of accessibility, internationalization, privacy and security.',
+  },
+  {
+    name: 'React',
+    href: 'https://react.dev/',
+    desc: 'React 官方文档',
+  },
+  {
+    name: 'DB-Engines',
+    href: 'https://db-engines.com/',
+    desc: '按流行程度对数据库管理系统进行排名，涵盖 380 多个系统，每月更新一次',
+  },
+  {
+    name: 'MDN',
+    href: 'https://developer.mozilla.org/',
+    desc: 'MDN Web Docs网站提供有关开放网络的信息，包括HTML、CSS和API，用于网站和渐进式网络应用。',
+  },
+];
+const navItems3 = [
+  {
+    name: 'cosine',
+    href: 'https://ysx.cosine.ren/',
+    desc: '开发者的博客喵',
+    icon: 'https://ysx.cosine.ren/img/avatar.jpg',
   },
 ];
 export default function Home() {
@@ -67,7 +98,7 @@ export default function Home() {
         )}
       />
       <HomeList
-        navItems={navItems}
+        navItems={navItems1}
         title={
           <>
             <FcSupport className="h-7 w-7" />
@@ -76,11 +107,20 @@ export default function Home() {
         }
       />
       <HomeList
-        navItems={navItems}
+        navItems={navItems2}
         title={
           <>
             <FcDocument className="h-7 w-7 " />
             文档
+          </>
+        }
+      />
+      <HomeList
+        navItems={navItems3}
+        title={
+          <>
+            <FaMicroblog className="h-7 w-7 " />
+            独立博客
           </>
         }
       />
