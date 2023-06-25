@@ -5,7 +5,6 @@ import { shakingAnim } from '@/constants/animate';
 import { motion } from 'framer-motion';
 import { useState } from 'react';
 import { AiFillLeftCircle, AiFillRightCircle } from 'react-icons/ai';
-import { FaToolbox } from 'react-icons/fa';
 import { FcDocument, FcLike, FcSupport } from 'react-icons/fc';
 
 const items = [
@@ -32,7 +31,7 @@ const navItems = [
   },
 ];
 export default function Home() {
-  const [type, setType] = useState<'most' | 'recent'>('most');
+  const [_, setType] = useState<'most' | 'recent'>('most');
 
   return (
     <>

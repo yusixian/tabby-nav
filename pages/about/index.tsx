@@ -1,6 +1,6 @@
 import Card from '@/components/card';
 import { useIsMounted } from '@/hooks/useIsMounted';
-import { Link, List, ListItem, ListItemButton, ListItemIcon, ListItemText } from '@mui/material';
+import { Link } from '@mui/material';
 import { FaGithub, FaStar } from 'react-icons/fa';
 
 export default function About() {

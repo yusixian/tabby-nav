@@ -3,6 +3,7 @@ import { Drawer, List, ListItem, ListItemButton } from '@mui/material';
 import { useRouter } from 'next/router';
 import { useRecoilState } from 'recoil';
 import NavItem, { NavItemProps } from '../navigator/NavItem';
+import { useIsMounted } from '@/hooks/useIsMounted';
 
 const routers: {
   name?: string;
@@ -18,8 +19,10 @@ type SiderProps = {
 };
 const Sider = ({ bottomItems }: SiderProps) => {
   const router = useRouter();
+  const isMounted = useIsMounted();
   const [selectIdx1, setSelectIdx1] = useRecoilState(oneLevelTabSelectIdxAtom);
   const [mobileExpand, setMobileExpand] = useRecoilState(oneLevelMenuExpandAtom);
+  if (!isMounted) return null;
   return (
     <Drawer anchor="left" open={mobileExpand} onKeyDown={() => setMobileExpand(false)} onClose={() => setMobileExpand(false)}>
       <List className="min-w-[10rem]">

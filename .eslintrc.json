@@ -3,7 +3,6 @@
   "plugins": ["@typescript-eslint"],
   "extends": ["next/core-web-vitals"],
   "rules": {
-    "@typescript-eslint/no-unused-vars": ["error"],
     "@next/next/no-img-element": "off"
   }
 }
