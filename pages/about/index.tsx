@@ -18,7 +18,7 @@ export default function About() {
             </Link>
           </p>
           <div
-            className="mx-4 flex cursor-pointer items-center justify-between rounded-xl py-2 px-4 transition hover:bg-black/10 dark:hover:bg-black/30"
+            className="mx-4 flex cursor-pointer items-center justify-between rounded-xl py-2 px-4 transition hover:bg-bg-200"
             onClick={() => window.open('https://github.com/yusixian/tabby-nav', '_blank')}
           >
             <div className="flex items-center gap-2 text-xl">

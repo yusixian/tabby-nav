@@ -29,8 +29,8 @@ export default function Layout({ children }: React.PropsWithChildren<{}>) {
       <MaterialThemeProvider theme={themeOptions}>
         <div className={clsx('flex h-screen min-h-screen flex-col text-text-100', poppins.variable)}>
           <Header />
-          <main className="relative flex-grow overflow-hidden">{children}</main>
-          <Footer />
+          <main className="relative overflow-auto">{children}</main>
+          {/* <Footer /> */}
         </div>
       </MaterialThemeProvider>
     </StyledEngineProvider>
