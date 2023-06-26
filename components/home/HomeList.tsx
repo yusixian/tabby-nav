@@ -1,6 +1,7 @@
 import { ReactElement, useState } from 'react';
 import Card from '../card';
 import Segmented from '../segmented';
+import Loading from '../ui/Loading';
 
 type NavItemProps = {
   name: string;
@@ -14,7 +15,7 @@ type HomeListProps = {
   title?: string | ReactElement;
 };
 export function HomeList({ navItems, title }: HomeListProps) {
-  const [_, setType] = useState<'most' | 'recent'>('most');
+  const [type, setType] = useState<'most' | 'recent'>('most');
 
   return (
     <div className="flex flex-col gap-3">
@@ -28,23 +29,27 @@ export function HomeList({ navItems, title }: HomeListProps) {
         ]}
       />
       <div className="grid grid-cols-5 gap-2 md:grid-cols-2">
-        {navItems.map(({ name, desc, icon, href }) => (
-          <Card
-            title={
-              <div className="flex items-center justify-center gap-2">
-                <img src={icon ?? `${href}/favicon.ico`} alt={name} className="aspect-square w-8 rounded-full bg-white" />
-                {name}
-              </div>
-            }
-            key={name}
-            clickable
-            onClick={() => window.open(href, '_blank')}
-          >
-            <p className="flex justify-center text-center text-sm text-text-200">
-              <span className="line-clamp-3 text-left">{desc}</span>
-            </p>
-          </Card>
-        ))}
+        {type === 'most' ? (
+          navItems.map(({ name, desc, icon, href }) => (
+            <Card
+              title={
+                <div className="flex items-center justify-center gap-2">
+                  <img src={icon ?? `${href}/favicon.ico`} alt={name} className="aspect-square w-8 rounded-full bg-white" />
+                  {name}
+                </div>
+              }
+              key={name}
+              clickable
+              onClick={() => window.open(href, '_blank')}
+            >
+              <p className="flex justify-center text-center text-sm text-text-200">
+                <span className="line-clamp-3 text-left">{desc}</span>
+              </p>
+            </Card>
+          ))
+        ) : (
+          <Loading className="col-span-3 w-full" />
+        )}
       </div>
     </div>
   );
