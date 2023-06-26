@@ -1,9 +1,9 @@
-module.exports = {
+const withMT = require('@material-tailwind/react/utils/withMT');
+
+module.exports = withMT({
   darkMode: 'class', // https://tailwindcss.com/docs/dark-mode
   content: ['./pages/**/*.{js,ts,jsx,tsx}', './components/**/*.{js,ts,jsx,tsx}'],
-  corePlugins: {
-    preflight: false,
-  },
+  important: '#__next',
   theme: {
     extend: {
       container: {
@@ -45,4 +45,4 @@ module.exports = {
     },
   },
   plugins: [],
-};
+});

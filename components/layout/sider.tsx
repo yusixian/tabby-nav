@@ -1,9 +1,9 @@
+import { useIsMounted } from '@/hooks/useIsMounted';
 import { oneLevelMenuExpandAtom, oneLevelTabSelectIdxAtom } from '@/store/router/state';
-import { Drawer, List, ListItem, ListItemButton } from '@mui/material';
+import { Drawer, List, ListItem } from '@material-tailwind/react';
 import { useRouter } from 'next/router';
 import { useRecoilState } from 'recoil';
 import NavItem, { NavItemProps } from '../navigator/NavItem';
-import { useIsMounted } from '@/hooks/useIsMounted';
 
 const routers: {
   name?: string;
@@ -24,35 +24,31 @@ const Sider = ({ bottomItems }: SiderProps) => {
   const [mobileExpand, setMobileExpand] = useRecoilState(oneLevelMenuExpandAtom);
   if (!isMounted) return null;
   return (
-    <Drawer anchor="left" open={mobileExpand} onKeyDown={() => setMobileExpand(false)} onClose={() => setMobileExpand(false)}>
-      <List className="min-w-[10rem]">
+    <Drawer open={mobileExpand} onKeyDown={() => setMobileExpand(false)} onClose={() => setMobileExpand(false)}>
+      <List className="w-full">
         {routers.map(({ name, path, key }, idx) => (
-          <ListItem key={key ?? name} disablePadding>
-            <ListItemButton>
-              <NavItem
-                selected={selectIdx1 === idx}
-                className="w-full px-1 py-1"
-                onClick={() => {
-                  router.push(path);
-                  setSelectIdx1(idx);
-                  setMobileExpand(false);
-                }}
-                name={name}
-                indicatorClass="inset-x-4"
-              />
-            </ListItemButton>
+          <ListItem key={key ?? name}>
+            <NavItem
+              selected={selectIdx1 === idx}
+              className="w-full px-1 py-1"
+              onClick={() => {
+                router.push(path);
+                setSelectIdx1(idx);
+                setMobileExpand(false);
+              }}
+              name={name}
+              indicatorClass="inset-x-4"
+            />
           </ListItem>
         ))}
         {bottomItems.map(({ key, icon, onClick }, idx) => (
-          <ListItem key={key} disablePadding>
-            <ListItemButton>
-              <NavItem
-                selected={selectIdx1 === routers.length + idx + 1}
-                className="w-full px-1 py-1"
-                onClick={onClick}
-                icon={icon}
-              />
-            </ListItemButton>
+          <ListItem key={key}>
+            <NavItem
+              selected={selectIdx1 === routers.length + idx + 1}
+              className="w-full px-1 py-1"
+              onClick={onClick}
+              icon={icon}
+            />
           </ListItem>
         ))}
       </List>

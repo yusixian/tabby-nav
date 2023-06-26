@@ -1,18 +1,17 @@
 import { MD_SCREEN_QUERY } from '@/constants';
 import { useIsMounted } from '@/hooks/useIsMounted';
 import { useToggleTheme } from '@/hooks/useToggleTheme';
-import { Drawer, List, ListItem, ListItemButton } from '@mui/material';
+import { oneLevelMenuExpandAtom, oneLevelTabSelectIdxAtom } from '@/store/router/state';
 import clsx, { ClassValue } from 'clsx';
 import { motion } from 'framer-motion';
 import { useRouter } from 'next/router';
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo } from 'react';
 import { AiFillGithub } from 'react-icons/ai';
 import { CgClose, CgDarkMode, CgMenu } from 'react-icons/cg';
 import { useMediaQuery } from 'react-responsive';
-import NavItem from './NavItem';
 import { useRecoilState } from 'recoil';
-import { oneLevelMenuExpandAtom, oneLevelTabSelectIdxAtom } from '@/store/router/state';
 import Sider from '../layout/sider';
+import NavItem from './NavItem';
 
 const routers: {
   name?: string;
@@ -65,7 +64,7 @@ export const Navigator = ({ className }: NavigatorProps) => {
         onClick: toggleTheme,
       },
     ],
-    [router, toggleTheme],
+    [toggleTheme],
   );
   /** Set SelectIdx When Change Route */
   useEffect(() => {

@@ -1,10 +1,7 @@
-import Card from '@/components/card';
 import Carousel3d from '@/components/carousel3d';
 import { HomeList } from '@/components/home/HomeList';
-import Segmented from '@/components/segmented';
 import { shakingAnim } from '@/constants/animate';
 import { motion } from 'framer-motion';
-import { useState } from 'react';
 import { AiFillLeftCircle, AiFillRightCircle } from 'react-icons/ai';
 import { FaMicroblog } from 'react-icons/fa';
 import { FcDocument, FcLike, FcSupport } from 'react-icons/fc';

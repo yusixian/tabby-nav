@@ -1,6 +1,5 @@
 import Card from '@/components/card';
 import { useIsMounted } from '@/hooks/useIsMounted';
-import { Link } from '@mui/material';
 import { FaGithub, FaStar } from 'react-icons/fa';
 
 export default function About() {
@@ -13,12 +12,9 @@ export default function About() {
           <p>
             🐱 TabbyNav是一个基于 Next.js + Typescript + React + Tailwind
             开发的导航网站，旨在帮助用户方便地管理和组织自己的导航链接。 Github 地址为
-            <Link href="https://github.com/yusixian/tabby-nav" target="_blank" className="mx-1">
-              https://github.com/yusixian/tabby-nav
-            </Link>
           </p>
           <div
-            className="mx-4 flex cursor-pointer items-center justify-between rounded-xl py-2 px-4 transition hover:bg-bg-200"
+            className="mx-4 flex cursor-pointer items-center justify-between rounded-xl px-4 py-2 transition hover:bg-bg-200"
             onClick={() => window.open('https://github.com/yusixian/tabby-nav', '_blank')}
           >
             <div className="flex items-center gap-2 text-xl">

@@ -1,7 +1,6 @@
-import { FcSupport } from 'react-icons/fc';
-import Segmented from '../segmented';
-import Card from '../card';
 import { ReactElement, useState } from 'react';
+import Card from '../card';
+import Segmented from '../segmented';
 
 type NavItemProps = {
   name: string;

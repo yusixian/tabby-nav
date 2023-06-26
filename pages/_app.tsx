@@ -3,9 +3,8 @@ import type { NextPage } from 'next';
 import { ThemeProvider } from 'next-themes';
 import type { AppProps } from 'next/app';
 import { ReactElement, ReactNode } from 'react';
-import '../styles/globals.css';
 import { RecoilRoot } from 'recoil';
-import { StyledEngineProvider } from '@mui/material';
+import '../styles/globals.css';
 
 type NextPageWithLayout = NextPage & {
   getLayout?: (page: ReactElement) => ReactNode;
@@ -16,13 +15,10 @@ type AppPropsWithLayout = AppProps & {
 };
 function App({ Component, pageProps }: AppPropsWithLayout) {
   const getLayout = Component.getLayout ?? ((page) => <Layout>{page}</Layout>);
-
   return (
-    <StyledEngineProvider injectFirst>
-      <ThemeProvider attribute="class">
-        <RecoilRoot>{getLayout(<Component {...pageProps} />)}</RecoilRoot>
-      </ThemeProvider>
-    </StyledEngineProvider>
+    <ThemeProvider attribute="class">
+      <RecoilRoot>{getLayout(<Component {...pageProps} />)}</RecoilRoot>
+    </ThemeProvider>
   );
 }
 
