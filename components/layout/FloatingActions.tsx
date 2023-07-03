@@ -7,25 +7,32 @@ import {
   SpeedDialHandler,
   Typography,
 } from '@material-tailwind/react';
+import clsx from 'clsx';
 import { useMemo } from 'react';
-import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai';
+import { AiFillEye, AiFillEyeInvisible, AiOutlineToTop } from 'react-icons/ai';
 import { FaPlus } from 'react-icons/fa';
 import { useRecoilState } from 'recoil';
+import { twMerge } from 'tailwind-merge';
 
-const iconClass = 'h-6 w-6 text-primary';
-export default function FloatingActions() {
+export default function FloatingActions({ onBackToTop, iconClass }: { onBackToTop: () => void; iconClass?: string }) {
+  const _iconClass = twMerge('h-6 w-6 text-primary', clsx(iconClass));
   const [globalConfig, setGlobalConfig] = useRecoilState(globalConfigAtom);
   const actions = useMemo(
     () => [
       {
-        icon: globalConfig.showFooter ? <AiFillEyeInvisible className={iconClass} /> : <AiFillEye className={iconClass} />,
+        icon: globalConfig.showFooter ? <AiFillEyeInvisible className={_iconClass} /> : <AiFillEye className={_iconClass} />,
         name: globalConfig.showFooter ? '关闭页脚' : '展示页脚',
         event: () => {
           setGlobalConfig((prev) => ({ ...prev, showFooter: !prev.showFooter }));
         },
       },
+      {
+        icon: <AiOutlineToTop className={_iconClass} />,
+        name: '回到顶部',
+        event: onBackToTop,
+      },
     ],
-    [globalConfig.showFooter, setGlobalConfig],
+    [_iconClass, globalConfig.showFooter, onBackToTop, setGlobalConfig],
   );
 
   return (
