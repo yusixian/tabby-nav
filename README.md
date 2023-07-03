@@ -1,8 +1,8 @@
-# TabbyNav
+# 🗺️ TabbyNavsz
 
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/username/repo/blob/master/LICENSE) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/username/repo/pulls)
 
-🐱 TabbyNav 是一个基于 Next.js + Typescript + React + Tailwind 开发的导航网站，旨在帮助用户方便地管理和组织自己的导航链接。
+🗺️ TabbyNav 是一个基于 Next.js + Typescript + React + Tailwind 开发的导航网站，旨在帮助用户方便地管理和组织自己的导航链接。
 
 ## 🚀 功能
 
@@ -12,13 +12,19 @@
 
 📁 按照分类组织自己的导航链接
 
-🚀 支持多种常用网站的快速访问及一键重置
+🚀 支持多种常用网站的快速访问及一键收藏
 
 ## 🛠 技术栈
 
 🔧 `Next.js ` `Typescript` `React` `Tailwind`
 
-## 📦 安装
+## 📦 部署 | 安装
+
+### Vercel 一键部署
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fyusixian%2Ftabby-nav&project-name=my-tabby-nav&repository-name=my-tabby-nav)
+
+### 本地开发
 
 1. 克隆项目到本地
 
@@ -63,10 +69,11 @@ TabbyNav 使用 [MIT 许可证](./LICENSE)。
 - [✨ 森语导航](https://github.com/sadose/forest-navigation) - 大森哥的导航网站
 - ...
 
-## TODO
+## 📝 TODO
 
 - [ ] 主要导航结构
 - [ ] 数据源
 - [ ] 后台
 - [ ] 导入书签
 - [ ] google analyze 埋点统计访问次数等
+- [ ] RSS 相关
