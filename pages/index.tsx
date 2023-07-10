@@ -61,66 +61,82 @@ const navItems3 = [
 ];
 export default function Home() {
   return (
-    <div className="mx-auto flex max-w-screen-lg flex-col gap-6 p-4">
-      <Carousel3d
-        items={items}
-        className="ml-6 select-none"
-        itemClass="-ml-6"
-        renderIndicators={({ preEvent, nextEvent }) => (
-          <div className="flex w-full items-center justify-between">
-            <div className="flex items-center gap-2 text-xl font-bold">
-              <FcLike className="h-7 w-7" /> 我的收藏
+    <div className="gao-4 flex">
+      <div className="sticky left-0 top-0 flex h-full flex-col whitespace-nowrap bg-header ">
+        <a href="#tools" className="px-6 py-2 transition hover:bg-bg-300 hover:opacity-80">
+          工具
+        </a>
+        <a href="#docs" className="px-6 py-2 transition hover:bg-bg-300 hover:opacity-80">
+          文档
+        </a>
+        <a href="#blogs" className="px-6 py-2 transition hover:bg-bg-300 hover:opacity-80">
+          独立博客
+        </a>
+      </div>
+      <div className="flex max-w-screen-lg flex-grow flex-col gap-6 p-4">
+        <Carousel3d
+          items={items}
+          className="ml-6 select-none"
+          itemClass="-ml-6"
+          renderIndicators={({ preEvent, nextEvent }) => (
+            <div className="flex w-full items-center justify-between">
+              <div className="flex items-center gap-2 text-xl font-bold">
+                <FcLike className="h-7 w-7" /> 我的收藏
+              </div>
+              <div className="flex items-center justify-center gap-2 text-3xl">
+                <motion.div
+                  initial={{ rotate: 0 }}
+                  whileTap={{ scale: 1.2 }}
+                  className="cursor-pointer"
+                  whileHover={shakingAnim()}
+                  onClick={preEvent}
+                >
+                  <AiFillLeftCircle className="h-12 w-12" />
+                </motion.div>
+                <motion.div
+                  initial={{ rotate: 0 }}
+                  whileTap={{ scale: 1.2 }}
+                  className="cursor-pointer"
+                  whileHover={shakingAnim()}
+                  onClick={nextEvent}
+                >
+                  <AiFillRightCircle className="h-12 w-12" />
+                </motion.div>
+              </div>
             </div>
-            <div className="flex items-center justify-center gap-2 text-3xl">
-              <motion.div
-                initial={{ rotate: 0 }}
-                whileTap={{ scale: 1.2 }}
-                className="cursor-pointer"
-                whileHover={shakingAnim()}
-                onClick={preEvent}
-              >
-                <AiFillLeftCircle className="h-12 w-12" />
-              </motion.div>
-              <motion.div
-                initial={{ rotate: 0 }}
-                whileTap={{ scale: 1.2 }}
-                className="cursor-pointer"
-                whileHover={shakingAnim()}
-                onClick={nextEvent}
-              >
-                <AiFillRightCircle className="h-12 w-12" />
-              </motion.div>
-            </div>
-          </div>
-        )}
-      />
-      <HomeList
-        navItems={navItems1}
-        title={
-          <>
-            <FcSupport className="h-7 w-7" />
-            工具
-          </>
-        }
-      />
-      <HomeList
-        navItems={navItems2}
-        title={
-          <>
-            <FcDocument className="h-7 w-7 " />
-            文档
-          </>
-        }
-      />
-      <HomeList
-        navItems={navItems3}
-        title={
-          <>
-            <FaMicroblog className="h-7 w-7 " />
-            独立博客
-          </>
-        }
-      />
+          )}
+        />
+        <HomeList
+          navItems={navItems1}
+          id="tools"
+          title={
+            <>
+              <FcSupport className="h-7 w-7" />
+              工具
+            </>
+          }
+        />
+        <HomeList
+          navItems={navItems2}
+          id="docs"
+          title={
+            <>
+              <FcDocument className="h-7 w-7 " />
+              文档
+            </>
+          }
+        />
+        <HomeList
+          navItems={navItems3}
+          id="blogs"
+          title={
+            <>
+              <FaMicroblog className="h-7 w-7 " />
+              独立博客
+            </>
+          }
+        />
+      </div>
     </div>
   );
 }

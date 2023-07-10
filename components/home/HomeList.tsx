@@ -1,3 +1,4 @@
+import { nanoid } from 'nanoid';
 import { ReactElement, useState } from 'react';
 import Card from '../card';
 import Segmented from '../segmented';
@@ -13,12 +14,13 @@ type NavItemProps = {
 type HomeListProps = {
   navItems: NavItemProps[];
   title?: string | ReactElement;
+  id?: string | number;
 };
-export function HomeList({ navItems, title }: HomeListProps) {
+export function HomeList({ navItems, title, id }: HomeListProps) {
   const [type, setType] = useState<'most' | 'recent'>('most');
 
   return (
-    <div className="flex flex-col gap-3">
+    <div className="flex flex-col gap-3" id={`${id ?? nanoid()}`}>
       <div className="flex items-center gap-2 text-xl font-bold">{title}</div>
       <Segmented
         className="p-2"

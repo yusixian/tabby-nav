@@ -20,7 +20,7 @@ export default function Layout({ children }: React.PropsWithChildren<{}>) {
   return (
     <div className={clsx('flex h-screen min-h-screen flex-col text-text-100', poppins.variable)}>
       <Header />
-      <main ref={containerRef} className="relative flex-grow overflow-auto pb-12">
+      <main ref={containerRef} className="relative flex-grow overflow-auto scroll-smooth pb-12">
         {children}
       </main>
       <FloatingActions onBackToTop={onBackToTop} />
