@@ -4,9 +4,9 @@
   --accent-200: #ffe4ff;
   --text-100: #333333;
   --text-200: #5c5c5c;
-  --bg-header: #f0f1f1;
+  --bg-header: #fff;
   --bg-100: #fff;
-  --bg-200: #f5f5f5;
+  --bg-200: #f2f2f2;
   --bg-300: #cccccc;
   --bg-900: #000;
   --gradient-bg: linear-gradient(135deg, #fdfbfb 10%, #ebedee 100%);
@@ -18,7 +18,7 @@ html.dark {
   --accent-200: #ffe4ff;
   --text-100: #ffffff;
   --text-200: #e0e0e0;
-  --bg-header: #353535;
+  --bg-header: #000;
   --bg-100: #000;
   --bg-200: #2b2b2b;
   --bg-300: #434343;

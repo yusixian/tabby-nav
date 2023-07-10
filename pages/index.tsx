@@ -63,13 +63,13 @@ export default function Home() {
   return (
     <div className="gao-4 flex">
       <div className="sticky left-0 top-0 flex h-full flex-col whitespace-nowrap bg-header text-center ">
-        <a href="#tools" className="px-6 py-2 transition hover:bg-bg-300 hover:opacity-80">
+        <a href="#tools" className="px-6 py-2 transition hover:bg-bg-200 hover:opacity-80">
           工具
         </a>
-        <a href="#docs" className="px-6 py-2 transition hover:bg-bg-300 hover:opacity-80">
+        <a href="#docs" className="px-6 py-2 transition hover:bg-bg-200 hover:opacity-80">
           文档
         </a>
-        <a href="#blogs" className="px-6 py-2 transition hover:bg-bg-300 hover:opacity-80">
+        <a href="#blogs" className="px-6 py-2 transition hover:bg-bg-200 hover:opacity-80">
           独立博客
         </a>
       </div>
