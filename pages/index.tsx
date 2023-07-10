@@ -61,7 +61,7 @@ const navItems3 = [
 ];
 export default function Home() {
   return (
-    <div className="gao-4 flex">
+    <div className="flex justify-between gap-4">
       <div className="sticky left-0 top-0 flex h-full flex-col whitespace-nowrap bg-header text-center ">
         <a href="#tools" className="px-6 py-2 transition hover:bg-bg-200 hover:opacity-80">
           工具
