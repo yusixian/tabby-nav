@@ -8,6 +8,7 @@
     "start": "next start",
     "db:init": "npx prisma migrate dev --name init && npx prisma generate",
     "db:reset": "npx prisma migrate reset",
+    "db:view": "npx prisma studio",
     "lint": "next lint"
   },
   "dependencies": {

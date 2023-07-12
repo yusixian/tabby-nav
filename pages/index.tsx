@@ -1,6 +1,7 @@
 import Carousel3d from '@/components/carousel3d';
 import { HomeList } from '@/components/home/HomeList';
 import { shakingAnim } from '@/constants/animate';
+import { PrismaClient } from '@prisma/client';
 import { motion } from 'framer-motion';
 import { AiFillLeftCircle, AiFillRightCircle } from 'react-icons/ai';
 import { FaMicroblog } from 'react-icons/fa';
@@ -59,7 +60,9 @@ const navItems3 = [
     icon: 'https://ysx.cosine.ren/img/avatar.jpg',
   },
 ];
-export default function Home() {
+
+export default function Home({ data }: { data: any }) {
+  console.log({ data });
   return (
     <div className="flex justify-between gap-4">
       <div className="sticky left-0 top-0 flex h-full flex-col whitespace-nowrap bg-header text-center ">
@@ -139,4 +142,14 @@ export default function Home() {
       </div>
     </div>
   );
+}
+export async function getStaticProps() {
+  const prisma = new PrismaClient();
+  const websites = await prisma.website.findMany({
+    include: { tags: true },
+  });
+  const data = websites.map(({ id, name, desc, tags, url }) => ({ id, name, desc, url, tags }));
+  return {
+    props: { data },
+  };
 }
