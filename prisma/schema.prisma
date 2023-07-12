@@ -6,26 +6,34 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("POSTGRES_PRISMA_URL") // uses connection pooling
+  provider = "sqlite"
+  url      = env("POSTGRES_PRISMA_URL")
 }
 
-model Post {
-  id        String  @id @default(cuid())
-  title     String
-  content   String?
-  published Boolean @default(false)
-  author    User?   @relation(fields: [authorId], references: [id])
-  authorId  String?
+model Website {
+  id        Int      @id @default(autoincrement())
+  name      String
+  url       String
+  desc      String?
+  tags      Tag[]    @relation("WebsiteTag")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
-model User {
-  id        String   @id @default(cuid())
-  name      String?
-  email     String?  @unique
-  createdAt DateTime @default(now()) @map(name: "created_at")
-  updatedAt DateTime @updatedAt @map(name: "updated_at")
-  posts     Post[]
+model Tag {
+  id         Int       @id @default(autoincrement())
+  name       String    @unique
+  websites   Website[] @relation("WebsiteTag")
+  category   Category? @relation("CategoryTag", fields: [categoryId], references: [id])
+  categoryId Int?
+}
 
-  @@map(name: "users")
+model Category {
+  id        Int       @id @default(autoincrement())
+  name      String    @unique // 分区名称
+  desc      String? // 分区描述
+  coverUrl  String? // 分区封面
+  createdAt DateTime  @default(now())
+  updatedAt DateTime? @updatedAt
+  tags      Tag[]     @relation("CategoryTag")
 }
