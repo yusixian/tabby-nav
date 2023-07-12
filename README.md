@@ -65,6 +65,7 @@ TabbyNav 使用 [MIT 许可证](./LICENSE)。
 
 - [helloxz/onenav](https://github.com/helloxz/onenav)
 - [toolsdar.com](https://toolsdar.com/)
+- [Castalia](https://github.com/afterwork-design/castalia)
 - [All | NavNav+](https://navnav.co/)
 - [✨ 森语导航](https://github.com/sadose/forest-navigation) - 大森哥的导航网站
 - ...
