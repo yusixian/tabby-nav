@@ -5,6 +5,9 @@ import type { AppProps } from 'next/app';
 import { ReactElement, ReactNode } from 'react';
 import { RecoilRoot } from 'recoil';
 import '../styles/globals.css';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+
+const queryClient = new QueryClient({ defaultOptions: { queries: { refetchOnWindowFocus: false } } });
 
 type NextPageWithLayout = NextPage & {
   getLayout?: (page: ReactElement) => ReactNode;
@@ -17,7 +20,9 @@ function App({ Component, pageProps }: AppPropsWithLayout) {
   const getLayout = Component.getLayout ?? ((page) => <Layout>{page}</Layout>);
   return (
     <ThemeProvider attribute="class">
-      <RecoilRoot>{getLayout(<Component {...pageProps} />)}</RecoilRoot>
+      <QueryClientProvider client={queryClient}>
+        <RecoilRoot>{getLayout(<Component {...pageProps} />)}</RecoilRoot>
+      </QueryClientProvider>
     </ThemeProvider>
   );
 }

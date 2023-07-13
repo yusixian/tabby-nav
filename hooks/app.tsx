@@ -1,7 +1,9 @@
 import { routers } from '@/constants/rooter';
+import { websitesAtom } from '@/store/main/state';
 import { useMemo } from 'react';
 import { AiFillGithub } from 'react-icons/ai';
 import { CgDarkMode } from 'react-icons/cg';
+import { useRecoilValue } from 'recoil';
 import { useToggleTheme } from './useToggleTheme';
 
 export const useNavItems = () => {
@@ -22,4 +24,12 @@ export const useNavItems = () => {
     [toggleTheme],
   );
   return { routers, buttons };
+};
+
+export const useTagWebsite = (tagName: string) => {
+  const websites = useRecoilValue(websitesAtom);
+  return useMemo(() => {
+    const filteredWebsite = websites.filter(({ tags }) => tags.findIndex(({ name }) => name === tagName) !== -1);
+    return filteredWebsite;
+  }, [tagName, websites]);
 };

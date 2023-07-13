@@ -23,16 +23,16 @@ model Website {
 }
 
 model Tag {
-  id         Int       @id @default(autoincrement())
-  name       String    @unique
-  websites   Website[] @relation("WebsiteTag")
-  icon       String? // 图标 https://react-icons.github.io/react-icons/icons?name=fc or /icons/xxx 
-  category   Category? @relation("CategoryTag", fields: [categoryId], references: [id])
-  categoryId Int?
+  id       Int        @id @default(autoincrement())
+  name     String     @unique
+  websites Website[]  @relation("WebsiteTag")
+  icon     String? // 图标 https://react-icons.github.io/react-icons/icons?name=fc or /icons/xxx 
+  category Category[] @relation("CategoryTag")
 }
 
 model Category {
   id        Int       @id @default(autoincrement())
+  key       String?   @unique // 分区别名 - 短链接
   name      String    @unique // 分区名称
   desc      String? // 分区描述
   coverUrl  String? // 分区封面
