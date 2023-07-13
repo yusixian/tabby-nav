@@ -1,26 +1,17 @@
 import { MD_SCREEN_QUERY } from '@/constants';
+import { useNavItems } from '@/hooks/app';
 import { useIsMounted } from '@/hooks/useIsMounted';
-import { useToggleTheme } from '@/hooks/useToggleTheme';
 import { oneLevelMenuExpandAtom, oneLevelTabSelectIdxAtom } from '@/store/router/state';
 import clsx, { ClassValue } from 'clsx';
 import { motion } from 'framer-motion';
 import { useRouter } from 'next/router';
-import { useEffect, useMemo } from 'react';
-import { AiFillGithub } from 'react-icons/ai';
-import { CgClose, CgDarkMode, CgMenu } from 'react-icons/cg';
+import { useEffect } from 'react';
+import { CgClose, CgMenu } from 'react-icons/cg';
 import { useMediaQuery } from 'react-responsive';
 import { useRecoilState } from 'recoil';
 import Sider from '../layout/sider';
 import NavItem from './NavItem';
 
-const routers: {
-  name?: string;
-  key?: string;
-  path: string;
-}[] = [
-  { name: '首页', path: '/' },
-  { name: '关于', path: '/about' },
-];
 const itemVariants = {
   open: {
     clipPath: 'inset(0% 0% 0% 0% round 10px)',
@@ -45,27 +36,12 @@ type NavigatorProps = {
 
 export const Navigator = ({ className }: NavigatorProps) => {
   const router = useRouter();
-
   const [selectIdx, setSelectIdx] = useRecoilState(oneLevelTabSelectIdxAtom);
-  const toggleTheme = useToggleTheme();
   const [mobileExpand, setMobileExpand] = useRecoilState(oneLevelMenuExpandAtom);
   const isMdScreen = useMediaQuery({ query: MD_SCREEN_QUERY });
   const isMounted = useIsMounted();
-  const buttons = useMemo(
-    () => [
-      {
-        key: 'Github',
-        icon: <AiFillGithub className="h-9 w-9 cursor-pointer" />,
-        onClick: () => window?.open('https://github.com/yusixian/tabby-nav', '_blank'),
-      },
-      {
-        key: 'CgDarkMode',
-        icon: <CgDarkMode className="h-9 w-9 cursor-pointer" />,
-        onClick: toggleTheme,
-      },
-    ],
-    [toggleTheme],
-  );
+  const { routers, buttons } = useNavItems();
+
   /** Set SelectIdx When Change Route */
   useEffect(() => {
     const path = router.pathname;
@@ -75,7 +51,7 @@ export const Navigator = ({ className }: NavigatorProps) => {
         break;
       }
     }
-  }, [router.pathname, setSelectIdx]);
+  }, [router.pathname, routers, setSelectIdx]);
 
   if (!isMounted) return null;
   return (

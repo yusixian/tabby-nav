@@ -4,15 +4,7 @@ import { Drawer, List, ListItem } from '@material-tailwind/react';
 import { useRouter } from 'next/router';
 import { useRecoilState } from 'recoil';
 import NavItem, { NavItemProps } from '../navigator/NavItem';
-
-const routers: {
-  name?: string;
-  key?: string;
-  path: string;
-}[] = [
-  { name: '首页', path: '/' },
-  { name: '关于', path: '/about' },
-];
+import { useNavItems } from '@/hooks/app';
 
 type SiderProps = {
   bottomItems: (NavItemProps & { key?: string })[];
@@ -22,6 +14,8 @@ const Sider = ({ bottomItems }: SiderProps) => {
   const isMounted = useIsMounted();
   const [selectIdx1, setSelectIdx1] = useRecoilState(oneLevelTabSelectIdxAtom);
   const [mobileExpand, setMobileExpand] = useRecoilState(oneLevelMenuExpandAtom);
+  const { routers } = useNavItems();
+
   if (!isMounted) return null;
   return (
     <Drawer open={mobileExpand} onKeyDown={() => setMobileExpand(false)} onClose={() => setMobileExpand(false)}>
