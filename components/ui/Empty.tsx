@@ -8,7 +8,7 @@ type EmptyProps = {
 const Empty = ({ className, msg }: EmptyProps) => {
   return (
     <div className="relative">
-      <Lottie className={className} animationData={emptyAnim} />
+      <Lottie className={className} animationData={emptyAnim} loop={false} />
       {msg && <p className="text-center opacity-80"> {msg}</p>}
     </div>
   );

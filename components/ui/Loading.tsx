@@ -4,6 +4,6 @@ type LoadingProps = {
   className?: string;
 };
 const Loading = ({ className }: LoadingProps) => {
-  return <Lottie className={className} animationData={loadingAnim} loop={true} />;
+  return <Lottie className={className} animationData={loadingAnim} />;
 };
 export default Loading;
