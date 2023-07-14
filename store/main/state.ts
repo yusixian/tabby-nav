@@ -1,4 +1,4 @@
-import { Serialize } from '@/apis/type';
+import { SerializeCategory, SerializeWebsite, SerializeTag } from '@/api/type';
 import { Category, Tag, Website } from '@prisma/client';
 import { atom } from 'recoil';
 
@@ -11,12 +11,17 @@ export const globalConfigAtom = atom<{
   },
 });
 
-export const websitesAtom = atom<Serialize<Website & { tags: Tag[] }>[]>({
+export const websitesAtom = atom<SerializeWebsite[]>({
   key: 'websites_atom',
   default: [],
 });
 
-export const categoriesAtom = atom<Serialize<Category & { tags: Tag[] }>[]>({
+export const categoriesAtom = atom<SerializeCategory[]>({
   key: 'categories_atom',
+  default: [],
+});
+
+export const tagsAtom = atom<SerializeTag[]>({
+  key: 'tags_atom',
   default: [],
 });

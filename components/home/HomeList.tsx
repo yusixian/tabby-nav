@@ -15,7 +15,6 @@ export function HomeList({ title, id, tags }: HomeListProps) {
   const [currentTag, setCurrentTag] = useState<string>(tags[0]?.name ?? '');
   const websites = useTagWebsite(currentTag);
   const isNoneTag = currentTag === '未分类';
-  console.log({ websites, currentTag, id });
   return (
     <div className="flex flex-col gap-3" id={`${id ?? nanoid()}`}>
       <div className="flex items-center gap-2 text-xl font-bold">{title}</div>
@@ -26,7 +25,7 @@ export function HomeList({ title, id, tags }: HomeListProps) {
       />
       <div className="grid grid-cols-5 gap-2 md:grid-cols-2">
         {websites?.length ? (
-          websites.map(({ name, desc, icon, url }) => (
+          websites.map(({ name, desc, icon, url, tags }) => (
             <Card
               title={
                 <div className="flex items-center justify-center gap-2">
@@ -40,6 +39,15 @@ export function HomeList({ title, id, tags }: HomeListProps) {
             >
               <p className="flex justify-center text-center text-sm text-text-200">
                 <span className="line-clamp-3 text-left">{desc}</span>
+              </p>
+              <p className="flex flex-wrap gap-2 text-sm">
+                {tags?.length
+                  ? tags.map(({ id, name }) => (
+                      <span className="rounded-lg bg-bg-200 px-2 py-1" key={id}>
+                        {name}
+                      </span>
+                    ))
+                  : null}
               </p>
             </Card>
           ))

@@ -1,12 +1,13 @@
-import { Serialize } from '@/apis/type';
+import { SerializeCategory, SerializeTag, SerializeWebsite } from '@/api/type';
 import Carousel3d from '@/components/carousel3d';
 import { CategorySider } from '@/components/home/CategorySider';
 import { HomeList } from '@/components/home/HomeList';
 import Empty from '@/components/ui/Empty';
 import FcIcon from '@/components/ui/FcIcon';
 import { shakingAnim } from '@/constants/animate';
-import { categoriesAtom, websitesAtom } from '@/store/main/state';
-import { Category, PrismaClient, Tag, Website } from '@prisma/client';
+import { categoriesAtom, tagsAtom, websitesAtom } from '@/store/main/state';
+import { serializeDate } from '@/utils/serialize';
+import { PrismaClient } from '@prisma/client';
 import dayjs from 'dayjs';
 import { motion } from 'framer-motion';
 import { useLayoutEffect } from 'react';
@@ -21,19 +22,23 @@ const items = [
 ];
 type HomeProps = {
   data: {
-    categories: Serialize<Category & { tags: Tag[] }>[];
-    websites: Serialize<Website & { tags: Tag[] }>[];
+    categories: SerializeCategory[];
+    websites: SerializeWebsite[];
+    tags: SerializeTag[];
   };
 };
 export default function Home({ data }: HomeProps) {
-  const { websites, categories } = data;
+  const { websites, categories, tags } = data;
   const setWebsites = useSetRecoilState(websitesAtom);
   const setCategories = useSetRecoilState(categoriesAtom);
+  const setTags = useSetRecoilState(tagsAtom);
+  console.log('----------------', { websites, categories, tags });
 
   useLayoutEffect(() => {
     setWebsites(websites);
     setCategories(categories);
-  }, [categories, setCategories, setWebsites, websites]);
+    setTags(tags);
+  }, [categories, setCategories, setTags, setWebsites, tags, websites]);
 
   return (
     <div className="flex justify-between gap-4">
@@ -73,7 +78,6 @@ export default function Home({ data }: HomeProps) {
         />
         {categories?.length ? (
           categories.map(({ key, name, icon, tags }) => {
-            console.log({ name, tags });
             return (
               <HomeList
                 key={key ?? name}
@@ -101,20 +105,22 @@ export async function getStaticProps() {
     const categoriesData = await prisma.category.findMany({
       include: { tags: true },
     });
-    const categories = categoriesData.map(({ createdAt, updatedAt, ...rest }) => {
-      return { createdAt: dayjs(createdAt).format(), updatedAt: dayjs(updatedAt).format(), ...rest };
-    });
+
     const websitesData = await prisma.website.findMany({
       include: { tags: true },
     });
-    const websites = websitesData.map(({ createdAt, updatedAt, ...rest }) => {
-      return { createdAt: dayjs(createdAt).format(), updatedAt: dayjs(updatedAt).format(), ...rest };
+    const tagsData = await prisma.tag.findMany({
+      include: { websites: true, categories: true },
+    });
+    const tags = tagsData.map(({ categories, websites, ...rest }) => {
+      return { categories: serializeDate(categories), websites: serializeDate(websites), ...rest };
     });
     return {
       props: {
         data: {
-          categories,
-          websites,
+          categories: serializeDate(categoriesData),
+          websites: serializeDate(websitesData),
+          tags,
         },
       },
     };
