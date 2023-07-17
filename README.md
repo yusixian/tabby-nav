@@ -1,4 +1,4 @@
-# 🗺️ TabbyNavsz
+# 🗺️ TabbyNav
 
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/username/repo/blob/master/LICENSE) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/username/repo/pulls)
 
