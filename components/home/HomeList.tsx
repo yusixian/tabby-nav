@@ -23,7 +23,7 @@ export function HomeList({ title, id, tags }: HomeListProps) {
         onChange={(value) => setCurrentTag(value as string)}
         options={tags.map((tag) => (isNoneTag ? null : { label: tag.name, value: tag.name }))}
       />
-      <div className="grid grid-cols-5 gap-2 md:grid-cols-2">
+      <div className="grid grid-cols-5 gap-2 md:grid-cols-2 xs:grid-cols-1">
         {websites?.length ? (
           websites.map(({ name, desc, icon, url, tags }) => (
             <Card
