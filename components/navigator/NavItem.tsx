@@ -1,5 +1,6 @@
 import clsx, { ClassValue } from 'clsx';
 import { Variants, motion } from 'framer-motion';
+import { twMerge } from 'tailwind-merge';
 
 const itemVariants: Variants = {
   open: {
@@ -35,7 +36,7 @@ function NavItem({ selected, icon, name, onClick, className, indicatorClass }: N
       {name}
       {selected && (
         <motion.div
-          className={clsx('absolute inset-x-0 -bottom-1 border-t-2 border-primary', indicatorClass)}
+          className={twMerge('absolute inset-x-0 -bottom-1 border-t-2 border-primary', indicatorClass)}
           layoutId="header_tab_selected"
         />
       )}

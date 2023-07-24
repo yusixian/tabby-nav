@@ -13,6 +13,7 @@ import { motion } from 'framer-motion';
 import { useLayoutEffect } from 'react';
 import { AiFillLeftCircle, AiFillRightCircle } from 'react-icons/ai';
 import { FcLike } from 'react-icons/fc';
+import { useMediaQuery } from 'react-responsive';
 import { useSetRecoilState } from 'recoil';
 
 const items = [
@@ -32,6 +33,7 @@ export default function Home({ data }: HomeProps) {
   const setWebsites = useSetRecoilState(websitesAtom);
   const setCategories = useSetRecoilState(categoriesAtom);
   const setTags = useSetRecoilState(tagsAtom);
+
   console.log('----------------', { websites, categories, tags });
 
   useLayoutEffect(() => {
@@ -42,7 +44,7 @@ export default function Home({ data }: HomeProps) {
 
   return (
     <div className="flex justify-between gap-4">
-      <CategorySider className="sticky left-0 top-0 h-full" />
+      <CategorySider className="sticky left-0 top-0 h-full md:hidden" />
       <div className="flex flex-grow flex-col gap-6 p-4">
         <Carousel3d
           items={items}
