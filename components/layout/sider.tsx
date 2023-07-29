@@ -54,9 +54,11 @@ const Sider = ({ bottomItems }: SiderProps) => {
               ))}
             </div>
           </div>
-          <div className="overflow-auto">
-            <CategorySider />
-          </div>
+          {router.pathname === '/' && (
+            <div className="overflow-auto">
+              <CategorySider />
+            </div>
+          )}
         </div>
       )}
     />

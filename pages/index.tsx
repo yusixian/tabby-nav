@@ -8,12 +8,10 @@ import { shakingAnim } from '@/constants/animate';
 import { categoriesAtom, tagsAtom, websitesAtom } from '@/store/main/state';
 import { serializeDate } from '@/utils/serialize';
 import { PrismaClient } from '@prisma/client';
-import dayjs from 'dayjs';
 import { motion } from 'framer-motion';
 import { useLayoutEffect } from 'react';
 import { AiFillLeftCircle, AiFillRightCircle } from 'react-icons/ai';
 import { FcLike } from 'react-icons/fc';
-import { useMediaQuery } from 'react-responsive';
 import { useSetRecoilState } from 'recoil';
 
 const items = [
