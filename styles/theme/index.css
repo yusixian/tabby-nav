@@ -2,6 +2,7 @@
   --primary: #e91e63;
   --accent-100: #ff4081;
   --accent-200: #ffe1eb;
+  --danger: #dc2626;
   --text-100: #333333;
   --text-200: #5c5c5c;
   --bg-header: #fff;
@@ -16,6 +17,7 @@ html.dark {
   --primary: #e91e63;
   --accent-100: #ff4081;
   --accent-200: #ffe1eb;
+  --danger: #dc2626;
   --text-100: #ffffff;
   --text-200: #e0e0e0;
   --bg-header: #000;

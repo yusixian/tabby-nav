@@ -18,3 +18,11 @@ export type TagCreateData = {
   websiteIds?: number[];
   categoryIds?: number[];
 };
+
+export type WebsiteCreateData = {
+  name: string;
+  url: string;
+  desc?: string;
+  icon?: string;
+  tags: string ;// split by ','
+};

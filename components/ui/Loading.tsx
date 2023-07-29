@@ -1,6 +1,6 @@
 import Lottie from 'lottie-react';
 import loadingAnim from '@/public/lottie/loading.json';
-type LoadingProps = {
+export type LoadingProps = {
   className?: string;
 };
 const Loading = ({ className }: LoadingProps) => {

@@ -23,6 +23,7 @@ module.exports = withMT({
           default: 'var(--accent-100)',
           200: 'var(--accent-200)',
         },
+        danger: 'var(--danger)',
         header: 'var(--bg-header)',
         text: {
           100: 'var(--text-100)',
