@@ -1,4 +1,4 @@
-import { routers } from '@/constants/rooter';
+import { routers } from '@/constants/router';
 import { websitesAtom } from '@/store/main/state';
 import { useMemo } from 'react';
 import { AiFillGithub } from 'react-icons/ai';
