@@ -17,7 +17,10 @@ model Website {
   desc String?
   icon String? // 图标 https://react-icons.github.io/react-icons/icons?name=fc or /icons/xxx or https://....
 
-  tags      Tag[]    @relation("WebsiteTag")
+  tags       Tag[]     @relation("WebsiteTag")
+  categoryId Int?
+  category   Category? @relation("CategoryWebsite", fields: [categoryId], references: [id]) // 父分类
+
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
@@ -33,7 +36,7 @@ model Tag {
 model Category {
   id        Int       @id @default(autoincrement())
   key       String?   @unique // 分区别名 - 短链接
-  name      String    @unique // 分区名称
+  name      String // 分区名称
   desc      String? // 分区描述
   coverUrl  String? // 分区封面
   icon      String? // 图标 https://react-icons.github.io/react-icons/icons?name=fc or /icons/xxx 
@@ -41,4 +44,10 @@ model Category {
   createdAt DateTime  @default(now())
   updatedAt DateTime? @updatedAt
   tags      Tag[]     @relation("CategoryTag")
+  websites  Website[] @relation("CategoryWebsite")
+
+  // 新增的自引用关系
+  parentId Int? // 父分类的ID
+  parent   Category?  @relation("CategoryChildren", fields: [parentId], references: [id]) // 父分类
+  children Category[] @relation("CategoryChildren") // 子分类
 }

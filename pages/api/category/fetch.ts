@@ -5,7 +5,7 @@ import { NextApiRequest, NextApiResponse } from 'next';
 const prisma = new PrismaClient();
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-  const { manyArgs, firstArgs }: { manyArgs: Prisma.TagFindManyArgs; firstArgs?: Prisma.TagFindFirstArgs } = req.body;
+  const { manyArgs, firstArgs }: { manyArgs: Prisma.CategoryFindManyArgs; firstArgs?: Prisma.CategoryFindFirstArgs } = req.body;
   if (manyArgs) {
     const results = await prisma.category.findMany(manyArgs);
     res.json(results);

@@ -6,7 +6,7 @@ import Empty from '@/components/ui/Empty';
 import FcIcon from '@/components/ui/FcIcon';
 import { shakingAnim } from '@/constants/animate';
 import { categoriesAtom, tagsAtom, websitesAtom } from '@/store/main/state';
-import { serializeDate } from '@/utils/serialize';
+import { serializeDate, serializeDateArr } from '@/utils/serialize';
 import { PrismaClient } from '@prisma/client';
 import { motion } from 'framer-motion';
 import { useLayoutEffect } from 'react';
@@ -103,23 +103,43 @@ export async function getStaticProps() {
   try {
     const prisma = new PrismaClient();
     const categoriesData = await prisma.category.findMany({
-      include: { tags: true },
+      include: { children: true, websites: true, tags: true, parent: true },
     });
 
     const websitesData = await prisma.website.findMany({
-      include: { tags: true },
+      include: { tags: true, category: true },
     });
     const tagsData = await prisma.tag.findMany({
       include: { websites: true, categories: true },
     });
-    const tags = tagsData.map(({ categories, websites, ...rest }) => {
-      return { categories: serializeDate(categories), websites: serializeDate(websites), ...rest };
-    });
+    const tags = serializeDateArr(
+      tagsData.map(({ categories, websites, ...rest }) => {
+        return { categories: serializeDateArr(categories), websites: serializeDateArr(websites), ...rest };
+      }),
+    );
+
+    const websites = serializeDateArr(
+      websitesData.map(({ tags, category, ...rest }) => {
+        return { category: serializeDate(category), tags: serializeDateArr(tags), ...rest };
+      }),
+    );
+
+    const categories = serializeDateArr(
+      categoriesData.map(({ children, websites, tags, parent, ...rest }) => {
+        return {
+          children: serializeDateArr(children),
+          websites: serializeDateArr(websites),
+          tags: serializeDateArr(tags),
+          parent: serializeDate(parent),
+          ...rest,
+        };
+      }),
+    );
     return {
       props: {
         data: {
-          categories: serializeDate(categoriesData),
-          websites: serializeDate(websitesData),
+          categories,
+          websites,
           tags,
         },
       },

@@ -1,16 +1,26 @@
-import { useMutation, useQuery } from '@tanstack/react-query';
-import request from '../api/request';
-import { TagCreateData } from '@/api/type';
+import { addTag, fetchManyTag, fetchTag } from '@/api/api';
+import { TagCreateData, TagData } from '@/api/type';
 import { Prisma } from '@prisma/client';
+import { useMutation, useQuery } from '@tanstack/react-query';
 
-export const useFetchManyTag = (data?: Prisma.TagFindManyArgs) => {
-  return useQuery(['fetch_many_tag', data], () => request.post('/api/tag/fetch', { data }), {
+export const useFetchManyTag = (manyArgs?: Prisma.TagFindManyArgs) => {
+  return useQuery<TagData[]>(['fetch_many_tag', manyArgs], () => fetchManyTag(manyArgs), {
     select: (res) => {
+      console.log('fetch many res:', res);
       return res;
     },
   });
 };
 
 export const useAddTagMutation = () => {
-  return useMutation<any, any, TagCreateData, any>((tagData) => request.post('/api/tag/create', { data: tagData }));
+  return useMutation<TagData, any, TagCreateData, any>((tagData) => addTag(tagData));
+};
+
+export const useFetchFirstTag = (firstArgs?: Prisma.TagFindFirstArgs) => {
+  return useQuery<TagData>(['fetch_first_tag', firstArgs], () => fetchTag(firstArgs), {
+    select: (res) => {
+      console.log('fetch first res:', res);
+      return res;
+    },
+  });
 };

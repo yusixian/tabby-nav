@@ -11,16 +11,20 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   const results = await prisma.tag.create({
     data: {
       ...rest,
-      websites: {
-        connect: websiteIds?.map((id) => ({
-          id,
-        })),
-      },
-      categories: {
-        connect: categoryIds?.map((id) => ({
-          id,
-        })),
-      },
+      websites: websiteIds?.length
+        ? {
+            connect: websiteIds?.map((id) => ({
+              id,
+            })),
+          }
+        : undefined,
+      categories: categoryIds?.length
+        ? {
+            connect: categoryIds?.map((id) => ({
+              id,
+            })),
+          }
+        : undefined,
     },
   });
   res.json(results);

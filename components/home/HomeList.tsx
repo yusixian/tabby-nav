@@ -12,17 +12,19 @@ type HomeListProps = {
   tags: Tag[];
 };
 export function HomeList({ title, id, tags }: HomeListProps) {
-  const [currentTag, setCurrentTag] = useState<string>(tags[0]?.name ?? '');
+  const [currentTag, setCurrentTag] = useState<string>(tags?.[0]?.name ?? '');
   const websites = useTagWebsite(currentTag);
   const isNoneTag = currentTag === '未分类';
   return (
     <div className="flex flex-col gap-3" id={`${id ?? nanoid()}`}>
       <div className="flex items-center gap-2 text-xl font-bold">{title}</div>
-      <Segmented
-        className="p-2"
-        onChange={(value) => setCurrentTag(value as string)}
-        options={tags.map((tag) => (isNoneTag ? null : { label: tag.name, value: tag.name }))}
-      />
+      {tags?.length ? (
+        <Segmented
+          className="p-2"
+          onChange={(value) => setCurrentTag(value as string)}
+          options={tags.map((tag) => (isNoneTag ? null : { label: tag.name, value: tag.name }))}
+        />
+      ) : null}
       <div className="grid grid-cols-5 gap-2 md:grid-cols-2 xs:grid-cols-1">
         {websites?.length ? (
           websites.map(({ name, desc, icon, url, tags }) => (

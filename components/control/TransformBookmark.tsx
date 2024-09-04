@@ -5,6 +5,9 @@ import Button from '../layout/Button';
 import { bookmarksToJSON } from 'bookmarks-to-json';
 import { AiFillCloseCircle } from 'react-icons/ai';
 import clsx from 'clsx';
+import { BookmarkJsonItem, BookmarkType } from '@/api/type';
+import { useAddCategoryMutation } from '@/hooks/category';
+import { useAddWebsiteMutation } from '@/hooks/website';
 
 type BookmarkFormData = {
   name: string;
@@ -39,6 +42,9 @@ export default function TransformBookmark() {
     });
     return () => subscription.unsubscribe();
   }, [watch]);
+
+  const { mutateAsync: addCategory } = useAddCategoryMutation();
+  const { mutateAsync: addWebsite } = useAddWebsiteMutation();
   const [loading, setLoading] = useState(false);
   const [bookJson, setBookJson] = useState('');
   const columns = useMemo(() => {
@@ -84,13 +90,55 @@ export default function TransformBookmark() {
 
     reader.readAsText(file);
   };
-
-  const onSubmit = (data: BookmarkFormData) => {
+  const addBookmark = async (bookmark: BookmarkJsonItem, categoryId?: number): Promise<boolean> => {
+    if (!bookmark) return false;
+    const { type } = bookmark;
+    if (type === BookmarkType.Link) {
+      const { addDate, title, icon, url, lastModified, children } = bookmark;
+      if (!url) return false;
+      const res = await addWebsite({
+        name: title,
+        icon,
+        categoryId,
+        url,
+        createdAt: addDate ? new Date(addDate * 1000) : undefined,
+        updatedAt: lastModified ? new Date(lastModified * 1000) : undefined,
+      });
+      return !!res?.id;
+    }
+    if (type === BookmarkType.Folder) {
+      const { addDate, title, lastModified, children } = bookmark;
+      const res = await addCategory({
+        name: title,
+        createdAt: addDate ? new Date(addDate * 1000) : undefined,
+        updatedAt: lastModified ? new Date(lastModified * 1000) : undefined,
+        parentId: categoryId,
+      });
+      if (!res?.id) return false;
+      if (!children?.length) return true;
+      for (const child of children) {
+        await addBookmark(child, res.id);
+      }
+      console.log('添加一批书签成功, 父级分类id:' + res.id + ' children:', children);
+      return true;
+    }
+    return false;
+  };
+  const onSubmit = async (data: BookmarkFormData) => {
     // 处理提交的数据
     setLoading(true);
     try {
-      const obj = JSON.parse(data.bookJsonStr);
-      console.log('======= obj =======\n', obj);
+      const bookmarks = JSON.parse(data.bookJsonStr) as BookmarkJsonItem[];
+      console.log('======= obj =======\n', bookmarks);
+      const res = await addCategory({
+        name: data.name,
+      });
+      if (!res?.id) throw new Error('添加书签失败，请重试');
+      console.log('======= res =======\n', res);
+      for (const bookmark of bookmarks) {
+        await addBookmark(bookmark, res.id);
+      }
+      console.log('添加一批书签成功, 父级分类id:' + res.id + ' bookmarks:', bookmarks);
       setLoading(false);
     } catch (e) {
       console.error(e);
@@ -141,7 +189,7 @@ export default function TransformBookmark() {
             重置
           </Button>
           <Button type="primary" loading={loading} htmlType="submit">
-            添加网站
+            导入
           </Button>
         </div>
       </form>

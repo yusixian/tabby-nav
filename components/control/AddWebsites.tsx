@@ -4,6 +4,15 @@ import Button from '../layout/Button';
 import { WebsiteCreateData } from '@/api/type';
 import { UseFormRegisterReturn, useForm } from 'react-hook-form';
 
+type WebsiteFormData = {
+  name: string;
+  url: string;
+  desc?: string;
+  icon?: string;
+  tags: string; // split by ','
+  categoryId?: number;
+};
+
 type FormConfig = {
   key: string;
   required?: boolean;
@@ -17,7 +26,7 @@ export default function AddWebsites() {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<WebsiteCreateData>();
+  } = useForm<WebsiteFormData>();
   const columns = useMemo(() => {
     const cols: FormConfig[] = [
       {
