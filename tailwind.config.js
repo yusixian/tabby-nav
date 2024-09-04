@@ -35,6 +35,7 @@ module.exports = withMT({
           300: 'var(--bg-300)',
           900: 'var(--bg-900)',
         },
+        blue: '#43BBFF',
       },
       backgroundImage: {
         gradient: 'var(--gradient-bg)',

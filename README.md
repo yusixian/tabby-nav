@@ -67,6 +67,7 @@ TabbyNav 使用 [MIT 许可证](./LICENSE)。
 - [toolsdar.com](https://toolsdar.com/)
 - [Castalia](https://github.com/afterwork-design/castalia)
 - [All | NavNav+](https://navnav.co/)
+- [PinTree](https://github.com/Pintree-io/pintree) - 给我浏览器书签转 json 的灵感
 - [✨ 森语导航](https://github.com/sadose/forest-navigation) - 大森哥的导航网站
 - ...
 

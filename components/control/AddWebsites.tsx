@@ -64,7 +64,7 @@ export default function AddWebsites() {
     console.log(data);
   };
   return (
-    <Card title="Add Website">
+    <Card title="添加单个网站">
       <form className="flex flex-col gap-4" onSubmit={handleSubmit(onSubmit)}>
         {columns.map(({ key, label, required, type = 'text', placeholder, props }) => (
           <div key={key} className="flex flex-col gap-1">

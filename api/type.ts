@@ -24,5 +24,21 @@ export type WebsiteCreateData = {
   url: string;
   desc?: string;
   icon?: string;
-  tags: string ;// split by ','
+  tags: string; // split by ','
+};
+
+export enum BookmarkType {
+  Link = 'link',
+  Folder = 'folder',
+}
+export type BookmarkJSONItem = {
+  type: BookmarkType;
+  addDate: number; // unix timestamp eg: 1713161783
+  title: string;
+  icon?: string; // data image
+  url?: string; // if type is link
+
+  // if type is folder
+  lastModified: number; // unix timestamp or 0
+  children?: BookmarkJSONItem[];
 };

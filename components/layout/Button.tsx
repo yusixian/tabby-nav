@@ -13,21 +13,24 @@ const ButtonClass = {
     default: 'border-black/10 bg-white text-black enabled:hover:border-primary enabled:hover:text-primary',
     primary: 'border-primary bg-primary text-white enabled:hover:opacity-80',
     link: 'border-transparent enabled:hover:text-primary',
+    blue: 'text-blue bg-blue/20 border-blue/20',
   },
   ghostClass: {
     default: 'border-white text-white enabled:hover:border-primary enabled:hover:text-primary',
     primary: 'border-primary bg-transparent text-primary enabled:hover:opacity-80',
     link: 'border-transparent text-white enabled:hover:text-primary',
+    blue: 'text-blue bg-transparent border-blue/20',
   },
   dangerClass: {
     default: 'border-danger text-danger enabled:hover:opacity-80',
     primary: 'border-danger bg-danger text-white enabled:hover:opacity-80',
     link: 'border-transparent text-danger enabled:hover:opacity-80',
+    blue: 'border-danger bg-danger text-white enabled:hover:opacity-80',
   },
 };
 export type ButtonProps = {
   /** 按钮类型 */
-  type?: 'default' | 'primary' | 'link' | 'unstyle';
+  type?: 'default' | 'primary' | 'link' | 'blue' | 'unstyle';
   /** 按钮大小 */
   size?: 'large' | 'middle' | 'small';
   /** 点击事件 */
@@ -102,7 +105,7 @@ const Button = forwardRef(
         disabled={_disabled}
         type={htmlType}
       >
-        {loading && <Loading className={clsx('mr-2', iconClassName)} {...loadingIconProps} />}
+        {loading && <Loading className={clsx('-mt-0.5 mr-2 inline-block', iconClassName)} {...loadingIconProps} />}
         {children}
       </button>
     );
