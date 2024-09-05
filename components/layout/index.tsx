@@ -7,6 +7,8 @@ import { poppins } from '../../constants/font';
 import FloatingActions from './FloatingActions';
 import { Footer } from './footer';
 import { Header } from './header';
+import { ToastContainer } from 'react-toastify';
+import { useTheme } from 'next-themes';
 
 export default function Layout({ children }: React.PropsWithChildren<{}>) {
   const { showFooter } = useRecoilValue(globalConfigAtom);
@@ -15,7 +17,7 @@ export default function Layout({ children }: React.PropsWithChildren<{}>) {
   const onBackToTop = useCallback(() => {
     containerRef.current?.scroll({ top: 0, behavior: 'smooth' });
   }, [containerRef]);
-
+  const { theme } = useTheme();
   if (!isMounted) return null;
   return (
     <div className={clsx('flex h-screen min-h-screen flex-col text-text-100', poppins.variable)}>
@@ -24,6 +26,7 @@ export default function Layout({ children }: React.PropsWithChildren<{}>) {
         {children}
       </main>
       <FloatingActions onBackToTop={onBackToTop} />
+      <ToastContainer theme={theme} autoClose={3000} hideProgressBar />
       {showFooter && <Footer />}
     </div>
   );

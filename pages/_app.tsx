@@ -1,11 +1,13 @@
 import Layout from '@/components/layout';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import type { NextPage } from 'next';
 import { ThemeProvider } from 'next-themes';
 import type { AppProps } from 'next/app';
 import { ReactElement, ReactNode } from 'react';
 import { RecoilRoot } from 'recoil';
+
 import '../styles/globals.css';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import 'react-toastify/dist/ReactToastify.css';
 
 const queryClient = new QueryClient({ defaultOptions: { queries: { refetchOnWindowFocus: false } } });
 
