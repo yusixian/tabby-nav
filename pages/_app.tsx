@@ -4,10 +4,9 @@ import type { NextPage } from 'next';
 import { ThemeProvider } from 'next-themes';
 import type { AppProps } from 'next/app';
 import { ReactElement, ReactNode } from 'react';
-import { RecoilRoot } from 'recoil';
 
-import '../styles/globals.css';
 import 'react-toastify/dist/ReactToastify.css';
+import '../styles/globals.css';
 
 const queryClient = new QueryClient({ defaultOptions: { queries: { refetchOnWindowFocus: false } } });
 
@@ -22,9 +21,7 @@ function App({ Component, pageProps }: AppPropsWithLayout) {
   const getLayout = Component.getLayout ?? ((page) => <Layout>{page}</Layout>);
   return (
     <ThemeProvider attribute="class">
-      <QueryClientProvider client={queryClient}>
-        <RecoilRoot>{getLayout(<Component {...pageProps} />)}</RecoilRoot>
-      </QueryClientProvider>
+      <QueryClientProvider client={queryClient}>{getLayout(<Component {...pageProps} />)}</QueryClientProvider>
     </ThemeProvider>
   );
 }

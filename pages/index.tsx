@@ -9,10 +9,10 @@ import { categoriesAtom, tagsAtom, websitesAtom } from '@/store/main/state';
 import { serializeDate, serializeDateArr } from '@/utils/serialize';
 import { PrismaClient } from '@prisma/client';
 import { motion } from 'framer-motion';
+import { useSetAtom } from 'jotai';
 import { useLayoutEffect } from 'react';
 import { AiFillLeftCircle, AiFillRightCircle } from 'react-icons/ai';
 import { FcLike } from 'react-icons/fc';
-import { useSetRecoilState } from 'recoil';
 
 const items = [
   { src: '/img/home/img_1.png', href: 'https://github.com/yusixian/tabby-nav', desc: 'Github地址' },
@@ -28,9 +28,9 @@ type HomeProps = {
 };
 export default function Home({ data }: HomeProps) {
   const { websites, categories, tags } = data;
-  const setWebsites = useSetRecoilState(websitesAtom);
-  const setCategories = useSetRecoilState(categoriesAtom);
-  const setTags = useSetRecoilState(tagsAtom);
+  const setWebsites = useSetAtom(websitesAtom);
+  const setCategories = useSetAtom(categoriesAtom);
+  const setTags = useSetAtom(tagsAtom);
 
   console.log('----------------', { websites, categories, tags });
 

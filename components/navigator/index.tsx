@@ -4,11 +4,11 @@ import { useIsMounted } from '@/hooks/useIsMounted';
 import { oneLevelMenuExpandAtom, oneLevelTabSelectIdxAtom } from '@/store/router/state';
 import clsx, { ClassValue } from 'clsx';
 import { motion } from 'framer-motion';
+import { useAtom } from 'jotai';
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 import { CgClose, CgMenu } from 'react-icons/cg';
 import { useMediaQuery } from 'react-responsive';
-import { useRecoilState } from 'recoil';
 import Sider from '../layout/sider';
 import NavItem from './NavItem';
 
@@ -36,8 +36,8 @@ type NavigatorProps = {
 
 export const Navigator = ({ className }: NavigatorProps) => {
   const router = useRouter();
-  const [selectIdx, setSelectIdx] = useRecoilState(oneLevelTabSelectIdxAtom);
-  const [mobileExpand, setMobileExpand] = useRecoilState(oneLevelMenuExpandAtom);
+  const [selectIdx, setSelectIdx] = useAtom(oneLevelTabSelectIdxAtom);
+  const [mobileExpand, setMobileExpand] = useAtom(oneLevelMenuExpandAtom);
   const isMdScreen = useMediaQuery({ query: MD_SCREEN_QUERY });
   const isMounted = useIsMounted();
   const { routers, buttons } = useNavItems();

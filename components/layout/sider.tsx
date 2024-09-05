@@ -1,12 +1,11 @@
+import { useNavItems } from '@/hooks/app';
 import { useIsMounted } from '@/hooks/useIsMounted';
 import { oneLevelMenuExpandAtom, oneLevelTabSelectIdxAtom } from '@/store/router/state';
-import { List, ListItem } from '@material-tailwind/react';
+import { useAtom } from 'jotai';
 import { useRouter } from 'next/router';
-import { useRecoilState } from 'recoil';
-import NavItem, { NavItemProps } from '../navigator/NavItem';
-import { useNavItems } from '@/hooks/app';
 import Drawer from '../drawer';
 import { CategorySider } from '../home/CategorySider';
+import NavItem, { NavItemProps } from '../navigator/NavItem';
 
 type SiderProps = {
   bottomItems: (NavItemProps & { key?: string })[];
@@ -14,8 +13,8 @@ type SiderProps = {
 const Sider = ({ bottomItems }: SiderProps) => {
   const router = useRouter();
   const isMounted = useIsMounted();
-  const [selectIdx1, setSelectIdx1] = useRecoilState(oneLevelTabSelectIdxAtom);
-  const [mobileExpand, setMobileExpand] = useRecoilState(oneLevelMenuExpandAtom);
+  const [selectIdx1, setSelectIdx1] = useAtom(oneLevelTabSelectIdxAtom);
+  const [mobileExpand, setMobileExpand] = useAtom(oneLevelMenuExpandAtom);
   const { routers } = useNavItems();
 
   if (!isMounted) return null;

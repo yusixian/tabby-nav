@@ -1,9 +1,9 @@
 import { routers } from '@/constants/router';
 import { websitesAtom } from '@/store/main/state';
+import { useAtomValue } from 'jotai';
 import { useMemo } from 'react';
 import { AiFillGithub } from 'react-icons/ai';
 import { CgDarkMode } from 'react-icons/cg';
-import { useRecoilValue } from 'recoil';
 import { useToggleTheme } from './useToggleTheme';
 
 export const useNavItems = () => {
@@ -27,7 +27,7 @@ export const useNavItems = () => {
 };
 
 export const useTagWebsite = (tagName: string) => {
-  const websites = useRecoilValue(websitesAtom);
+  const websites = useAtomValue(websitesAtom);
   return useMemo(() => {
     const filteredWebsite = websites.filter(({ tags }) => tags.findIndex(({ name }) => name === tagName) !== -1);
     return filteredWebsite;

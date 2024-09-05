@@ -1,17 +1,17 @@
 import { useIsMounted } from '@/hooks/useIsMounted';
 import { globalConfigAtom } from '@/store/main/state';
 import clsx from 'clsx';
+import { useAtomValue } from 'jotai';
+import { useTheme } from 'next-themes';
 import { useCallback, useRef } from 'react';
-import { useRecoilValue } from 'recoil';
+import { ToastContainer } from 'react-toastify';
 import { poppins } from '../../constants/font';
 import FloatingActions from './FloatingActions';
 import { Footer } from './footer';
 import { Header } from './header';
-import { ToastContainer } from 'react-toastify';
-import { useTheme } from 'next-themes';
 
 export default function Layout({ children }: React.PropsWithChildren<{}>) {
-  const { showFooter } = useRecoilValue(globalConfigAtom);
+  const { showFooter } = useAtomValue(globalConfigAtom);
   const containerRef = useRef<HTMLElement>(null);
   const isMounted = useIsMounted();
   const onBackToTop = useCallback(() => {

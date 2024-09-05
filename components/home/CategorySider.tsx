@@ -1,15 +1,15 @@
 import { categoriesAtom } from '@/store/main/state';
 import clsx from 'clsx';
-import { useRecoilValue } from 'recoil';
 import { twMerge } from 'tailwind-merge';
 import Empty from '../ui/Empty';
 import FcIcon from '../ui/FcIcon';
+import { useAtomValue } from 'jotai';
 
 type CategorySiderProps = {
   className?: string;
 };
 export function CategorySider({ className }: CategorySiderProps) {
-  const categories = useRecoilValue(categoriesAtom);
+  const categories = useAtomValue(categoriesAtom);
 
   return (
     <div className={twMerge('flex flex-col whitespace-nowrap bg-header text-center', clsx(className))}>

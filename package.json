@@ -23,6 +23,7 @@
     "eslint": "8.36.0",
     "eslint-config-next": "13.2.4",
     "framer-motion": "^10.12.16",
+    "jotai": "^2.9.3",
     "lodash-es": "^4.17.21",
     "lottie-react": "^2.4.0",
     "nanoid": "^4.0.2",
@@ -35,7 +36,6 @@
     "react-responsive": "^9.0.2",
     "react-toastify": "^10.0.5",
     "react-use": "^17.4.0",
-    "recoil": "^0.7.7",
     "tailwind-merge": "^1.13.2",
     "typescript": "5.0.2"
   },

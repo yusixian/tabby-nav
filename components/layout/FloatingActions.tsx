@@ -8,15 +8,15 @@ import {
   Typography,
 } from '@material-tailwind/react';
 import clsx from 'clsx';
+import { useAtom } from 'jotai';
 import { useMemo } from 'react';
 import { AiFillEye, AiFillEyeInvisible, AiOutlineToTop } from 'react-icons/ai';
 import { FaPlus } from 'react-icons/fa';
-import { useRecoilState } from 'recoil';
 import { twMerge } from 'tailwind-merge';
 
 export default function FloatingActions({ onBackToTop, iconClass }: { onBackToTop: () => void; iconClass?: string }) {
   const _iconClass = twMerge('h-6 w-6 text-primary', clsx(iconClass));
-  const [globalConfig, setGlobalConfig] = useRecoilState(globalConfigAtom);
+  const [globalConfig, setGlobalConfig] = useAtom(globalConfigAtom);
   const actions = useMemo(
     () => [
       {
